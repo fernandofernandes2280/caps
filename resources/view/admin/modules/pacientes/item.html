@@ -1,0 +1,18 @@
+<tr>					
+	<td class="text-center" >{{codPronto}}</td>
+	<td><a href="{{URL}}/admin/pacientes/{{codPronto}}/edit" rel="tooltip" title="Visualizar">{{nome}}</a></td>
+	<td class="text-center" ><span>{{cartaoSus}}</span></td>
+	<td class="text-center" title="{{titleTipo}}" rel="tooltip">{{tipo}}</td>
+	<td class="{{cor}} font-weight-bold text-center"><i class="material-icons" style="font-size: 30px;" rel="tooltip" title="{{titleStatus}}">star</i></td>
+	<td class="text-center">
+		<a href="{{URL}}/admin/pacientes/{{codPronto}}/edit" >
+			  <i class="material-icons" style="font-size: 30px;" rel="tooltip" title="Visualizar">visibility</i>
+		</a>
+		<a href="{{URL}}/admin/pacientes/{{codPronto}}/delete" >
+                <i class="material-icons" style="font-size: 30px;" rel="tooltip" title="Excluir">delete</i>
+		</a>
+		<a href="{{URL}}/admin/atendimentos/{{codPronto}}/atendimento" rel="tooltip" title="Atendimentos">
+                <i class="material-icons" style="font-size: 30px;">assignment</i>
+		</a>
+	</td>
+	</tr>

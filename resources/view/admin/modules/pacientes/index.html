@@ -1,0 +1,105 @@
+
+<main>
+      <h4 class="card-title"></h4>
+		<div class="row">
+			<div class="col-sm-6 card-title">
+				<h5>{{title}}</h5>
+			</div>
+			<div class="col-sm-6">
+				{{statusMessage}}
+			</div>
+		
+		</div>
+		<hr>
+
+<section id="pacientes">
+  	<form method="get" id="form">
+<div class="form-row">
+ 			<div class="col-lg-2">
+ 				<label>Prontuário:</label>
+ 				<input type="text" name="pront" class="form-control-pessoal" value="{{pront}}" style="color:black" >
+		</div>
+	  	<div class="col-lg-4">
+			<label>Nome:</label>
+			<input type="text" name="nome" class="form-control-pessoal" value="{{nome}}" style="color:black">
+	  	</div>
+		<div class="col-lg-2 " >
+			<label>Tipo:</label>
+			<select name="tipo" class="custom-select ">
+				<option style="color:black" value="">Ad/Tm</option>
+		<option style="color:black" value="AD" {{selectedAd}} >Ad</option>
+		<option style="color:black" value="TM" {{selectedTm}} >Tm</option>
+			</select>
+		</div>
+		<div class="col-lg-2" >
+			<label>Status:</label>
+			<select name="status" class="custom-select" >
+				<option style="color:black" value="" {{selectedAtIn}}>Ativo/Inativo</option>
+				<option style="color:black" value="ATIVO" {{selectedAtivo}}>Ativo</option>
+				<option style="color:black" value="INATIVO" {{selectedInativo}}>Inativo</option>
+			</select>
+		</div>
+		<div class="col-lg-2 d-flex align-items-end mt-2">
+			<button type="submit" class="btn  btn-facebook btn-round btn-sm mr-2" rel="tooltip" title="Pesquisar">
+				 <i class="material-icons" style="font-size: 30px;">search</i>
+			</button>
+			<a href="{{URL}}/admin/pacientes/new">
+			<button type="button" class="btn btn-success btn-round btn-sm " rel="tooltip" title="Novo Paciente">
+				<i class="material-icons" style="font-size: 30px;">person_add</i>
+			</button>
+	   		 </a>
+		</div>
+	</div>
+  	</form>
+  
+  </section>
+  
+  
+  <div class="table-responsive">
+  	<table class="table table-striped">
+  		
+  		<thead class=" text-light text-center">
+  			<tr >
+  				<th>Pront.</th>
+  				<th>Nome</th>
+  				<th>Cartão SUS</th>
+  				<th>Tipo</th>
+  				<th >Status</th>
+  				<th style="width:15%">Ações</th>
+  			</tr>
+  		</thead>
+  		<tbody >
+  		
+  			{{itens}}
+  			
+  		</tbody>
+  	
+  	</table>
+ </div>
+  <hr>
+  <div class="row " >
+  	<div class="col d-flex justify-content-start">
+  				{{pagination}} 
+  	</div>
+  	<div class="col d-flex justify-content-end">
+  				<span >&nbsp;&nbsp;&nbsp;Total de registros encontrados: {{totalPacientes}}</span>
+  	</div>
+  	
+  </div>
+  <hr>
+</main>
+
+
+<!-- teste com ajax -->
+<section class="users" hiddens>
+    
+    <article class="users_user">
+        <h3>TESTE DE AJAX</h3>
+        <a class="remove" href="#" data-action="{{URL}}/admin/delete" data-id="3">Deletar</a>
+        </article>
+    
+</section>
+
+
+
+

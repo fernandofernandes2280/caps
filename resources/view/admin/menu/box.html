@@ -1,0 +1,84 @@
+    <div class="sidebar" data-color="green" data-background-color="black" data-image="{{URL}}/resources/assets/img/sidebar-2.jpg">
+      <!--
+        Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
+
+        Tip 2: you can also add an image using data-image tag
+    -->
+
+    	<div class="logo"><a href="#" class="simple-text logo-normal">
+         <span><img src="{{URL}}/resources/imagens/logoSiscaps.png" class="mb-0"  height="45" alt="SISCAPS" style="border-radius:10px"></span>
+        </a>
+        </div>
+      
+	 	<div class="sidebar-wrapper">
+	     <div class="row text-light mt-2 pl-1" >
+	     	<div class="col-4 text-center d-flex align-items-center">
+
+	     	<form  method="post" enctype="multipart/form-data" >
+	     		<!-- 	<input type="file" name="arquivo[]" multiple >  USADO COM UPLOAD DE ARQUIVOS-->
+					<label for="tipofile" class="custom-file-upload">
+				      <input id="tipofile" type="file" name="image" value="">
+				     <img id="preview" class="profile-photo " alt="Foto" rel="tooltip" title="Alterar foto" src="{{URL}}{{imagem}}" style="cursor:pointer">
+				   </label>
+				    <input id="Bot_login" type="submit" value="Alterar" rel="tooltip" title="Confirma alteração" >
+<style>
+
+#tipofile{
+   display: none;
+}
+#Bot_login{
+	height:20px;
+	font-size:10px;
+	background: transparent;
+	color:#fff;
+	 
+}
+</style>					
+<script>
+//carrega a imagem selecionado
+function readImage() {
+    if (this.files && this.files[0]) {
+        var file = new FileReader();
+        file.onload = function(e) {
+            document.getElementById("preview").src = e.target.result;
+        };       
+        file.readAsDataURL(this.files[0]);
+    }
+}
+document.getElementById("tipofile").addEventListener("change", readImage, false);
+</script>	     			
+	     		
+	     		</form>
+	     		</div>
+
+	     	<div class="col-8 mt-3" >
+	            <h5>{{usuarioLogado}}</h5>
+	            <div class="row">
+	            	<div class="col-6">
+	            		<span class="badge badge-secondary">{{tipoUsuario}}</span>	
+	            	</div>
+	            	<div class="col-6">
+	            		<a href="{{URL}}/logout" >
+	           		<span  rel="tooltip" title="Sair" style="font-size: 15px"> <i class="material-icons">logout</i>Sair</span>
+	      			</a>
+	            	</div>
+	            </div>
+	     	</div>
+	     </div>
+        <ul class="nav">
+        		{{links}}
+				{{dropdownProducao}}
+				{{dropdownManutencao}}
+				
+        </ul>
+        
+      </div>
+			
+    </div>
+
+
+
+
+    
+
+

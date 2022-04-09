@@ -1,0 +1,181 @@
+
+										<div class="row">
+											<div class="col-8 " >
+												<h5>{{title}}</h5>
+											</div>
+										<div class="col-4 text-right">
+											<a href="javascript:history.back()">
+												<button type="button" class="btn btn-warning btn-round btn-sm " rel="tooltip" title="Voltar">
+													<i class="material-icons" style="font-size: 30px;">reply</i>
+												</button>
+											</a>
+										</div>
+									</div>
+
+									<form method="post" target="blanck">
+									
+									 <div class="form-row">
+									    <div class="col-md-1 mb-2">
+											<label>Prontuário: </label><br>
+											<input class="form-control-pessoal" type="text" name="CodPronto" value="{{codPronto}}" readonly />
+									    </div>
+
+									    <div class="col-md-5 mb-2">
+											<label>Nome: </label> <br>
+											<input class="form-control-pessoal" type="text" name="nome" value="{{nome}}" readonly />
+									    </div>
+    								  </div>
+									 <div class="form-row">
+									    <div class="col-md-8 mb-2">
+									    <table border="1" CELLPADDING=5>
+									    	<tr align=center>
+												<td rowspan="2" colspan="2" width="900" >Medicamentos</td>
+												<td colspan="6">Quantidade solicitada</td>
+											</tr>
+											<tr align=center>
+												<td>1º mês</td>
+												<td>2º mês</td>
+												<td>3º mês</td>
+												<td>4º mês</td>
+												<td>5º mês</td>
+												<td>6º mês</td>
+											</tr>
+											<tr align=center>
+												<td width="20">1</td>
+												<td>
+													<select class="custom-select" name="med1" required>
+														<option value=""></option>
+												        <option value="OLANZAPINA 5mg">OLANZAPINA 5mg</option>
+												        <option value="OLANZAPINA 10mg">OLANZAPINA 10mg</option>
+												        <option value="RISPERIDONA 1mg">RISPERIDONA 1mg</option>
+												        <option value="RISPERIDONA 2mg">RISPERIDONA 2mg</option>
+												        <option value="RISPERIDONA 3mg">RISPERIDONA 3mg</option>
+												        <option value="TOPIRAMATO 50mg">TOPIRAMATO 50mg</option>
+												        <option value="HEIMER 10mg">HEIMER 10mg</option>
+												      </select>
+												</td>
+												<td><input class="form-control-pessoal" type="text" style="width:50px" name="qtd1Med1" required /></td>
+												<td><input class="form-control-pessoal" type="text" style="width:50px" name="qtd2Med1"/></td>
+												<td><input class="form-control-pessoal" type="text" style="width:50px" name="qtd3Med1"/></td>
+												<td><input class="form-control-pessoal" type="text" style="width:50px" name="qtd4Med1"/></td>
+												<td><input class="form-control-pessoal" type="text" style="width:50px" name="qtd5Med1"/></td>
+												<td><input class="form-control-pessoal" type="text" style="width:50px" name="qtd6Med1"/></td>
+											</tr>
+											<tr align=center>
+												<td width="20">2</td>
+												<td>
+													<select class="custom-select" name="med2">
+														<option value=""></option>
+												        <option value="OLANZAPINA 5mg">OLANZAPINA 5mg</option>
+												        <option value="OLANZAPINA 10mg">OLANZAPINA 10mg</option>
+												        <option value="RISPERIDONA 1mg">RISPERIDONA 1mg</option>
+												        <option value="RISPERIDONA 2mg">RISPERIDONA 2mg</option>
+												        <option value="RISPERIDONA 3mg">RISPERIDONA 3mg</option>
+												        <option value="TOPIRAMATO 50mg">TOPIRAMATO 50mg</option>
+												      </select>
+												</td>
+												<td><input class="form-control-pessoal" type="text" style="width:50px" name="qtd1Med2" /></td>
+												<td><input class="form-control-pessoal" type="text" style="width:50px" name="qtd2Med2"/></td>
+												<td><input class="form-control-pessoal" type="text" style="width:50px" name="qtd3Med2"/></td>
+												<td><input class="form-control-pessoal" type="text" style="width:50px" name="qtd4Med2"/></td>
+												<td><input class="form-control-pessoal" type="text" style="width:50px" name="qtd5Med2"/></td>
+												<td><input class="form-control-pessoal" type="text" style="width:50px" name="qtd6Med2"/></td>
+											</tr>
+											<tr align=center>
+												<td width="20">3</td>
+												<td>
+													<select class="custom-select" name="med3">
+														<option value=""></option>
+												        <option value="OLANZAPINA 5mg">OLANZAPINA 5mg</option>
+												        <option value="OLANZAPINA 10mg">OLANZAPINA 10mg</option>
+												        <option value="RISPERIDONA 1mg">RISPERIDONA 1mg</option>
+												        <option value="RISPERIDONA 2mg">RISPERIDONA 2mg</option>
+												        <option value="RISPERIDONA 3mg">RISPERIDONA 3mg</option>
+												        <option value="TOPIRAMATO 50mg">TOPIRAMATO 50mg</option>
+												      </select>
+												</td>
+												<td><input class="form-control-pessoal" type="text" style="width:50px" name="qtd1Med3" /></td>
+												<td><input class="form-control-pessoal" type="text" style="width:50px" name="qtd2Med3"/></td>
+												<td><input class="form-control-pessoal" type="text" style="width:50px" name="qtd3Med3"/></td>
+												<td><input class="form-control-pessoal" type="text" style="width:50px" name="qtd4Med3"/></td>
+												<td><input class="form-control-pessoal" type="text" style="width:50px" name="qtd5Med3"/></td>
+												<td><input class="form-control-pessoal" type="text" style="width:50px" name="qtd6Med3"/></td>
+											</tr>
+											<tr align=center>
+												<td width="20">4</td>
+												<td>
+													<select class="custom-select" name="med4">
+														<option value=""></option>
+												        <option value="OLANZAPINA 5mg">OLANZAPINA 5mg</option>
+												        <option value="OLANZAPINA 10mg">OLANZAPINA 10mg</option>
+												        <option value="RISPERIDONA 1mg">RISPERIDONA 1mg</option>
+												        <option value="RISPERIDONA 2mg">RISPERIDONA 2mg</option>
+												        <option value="RISPERIDONA 3mg">RISPERIDONA 3mg</option>
+												        <option value="TOPIRAMATO 50mg">TOPIRAMATO 50mg</option>
+												      </select>
+												</td>
+												<td><input class="form-control-pessoal" type="text" style="width:50px" name="qtd1Med4" /></td>
+												<td><input class="form-control-pessoal" type="text" style="width:50px" name="qtd2Med4"/></td>
+												<td><input class="form-control-pessoal" type="text" style="width:50px" name="qtd3Med4"/></td>
+												<td><input class="form-control-pessoal" type="text" style="width:50px" name="qtd4Med4"/></td>
+												<td><input class="form-control-pessoal" type="text" style="width:50px" name="qtd5Med4"/></td>
+												<td><input class="form-control-pessoal" type="text" style="width:50px" name="qtd6Med4"/></td>
+											</tr>
+											<tr align=center>
+												<td width="20">5</td>
+												<td>
+													<select class="custom-select" name="med5">
+														<option value=""></option>
+												        <option value="OLANZAPINA 5mg">OLANZAPINA 5mg</option>
+												        <option value="OLANZAPINA 10mg">OLANZAPINA 10mg</option>
+												        <option value="RISPERIDONA 1mg">RISPERIDONA 1mg</option>
+												        <option value="RISPERIDONA 2mg">RISPERIDONA 2mg</option>
+												        <option value="RISPERIDONA 3mg">RISPERIDONA 3mg</option>
+												        <option value="TOPIRAMATO 50mg">TOPIRAMATO 50mg</option>
+												      </select>
+												</td>
+												<td><input class="form-control-pessoal" type="text" style="width:50px" name="qtd1Med5" /></td>
+												<td><input class="form-control-pessoal" type="text" style="width:50px" name="qtd2Med5"/></td>
+												<td><input class="form-control-pessoal" type="text" style="width:50px" name="qtd3Med5"/></td>
+												<td><input class="form-control-pessoal" type="text" style="width:50px" name="qtd4Med5"/></td>
+												<td><input class="form-control-pessoal" type="text" style="width:50px" name="qtd5Med5"/></td>
+												<td><input class="form-control-pessoal" type="text" style="width:50px" name="qtd6Med5"/></td>
+											</tr>
+											<tr align=center>
+												<td width="20">6</td>
+												<td>
+													<select class="custom-select" name="med6">
+														<option value=""></option>
+												        <option value="OLANZAPINA 5mg">OLANZAPINA 5mg</option>
+												        <option value="OLANZAPINA 10mg">OLANZAPINA 10mg</option>
+												        <option value="RISPERIDONA 1mg">RISPERIDONA 1mg</option>
+												        <option value="RISPERIDONA 2mg">RISPERIDONA 2mg</option>
+												        <option value="RISPERIDONA 3mg">RISPERIDONA 3mg</option>
+												        <option value="TOPIRAMATO 50mg">TOPIRAMATO 50mg</option>
+												      </select>
+												</td>
+												<td><input class="form-control-pessoal" type="text" style="width:50px" name="qtd1Med6" /></td>
+												<td><input class="form-control-pessoal" type="text" style="width:50px" name="qtd2Med6"/></td>
+												<td><input class="form-control-pessoal" type="text" style="width:50px" name="qtd3Med6"/></td>
+												<td><input class="form-control-pessoal" type="text" style="width:50px" name="qtd4Med6"/></td>
+												<td><input class="form-control-pessoal" type="text" style="width:50px" name="qtd5Med6"/></td>
+												<td><input class="form-control-pessoal" type="text" style="width:50px" name="qtd6Med6"/></td>
+											</tr>
+																    
+									    </table>
+											
+											
+									    </div>
+						
+    								  </div>
+								
+										<div class="form-group">
+											<button class="btn btn-facebook btn-sm btn-round" type="submit" rel="tooltip" title="Salvar">
+										     	<i class="material-icons" style="font-size: 30px;">print</i>
+										     </button>
+										</div>
+									
+									</form>
+
+
+							

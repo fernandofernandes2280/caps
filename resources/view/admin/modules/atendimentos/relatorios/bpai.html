@@ -1,0 +1,166 @@
+<html>
+	<head>
+		<style>
+
+
+			body{
+			
+				font-family: "Open Sans", sans-serif;
+			margin: 0;
+			}
+			
+			.titulo{
+				background: #000; 
+				color: #fff; 
+				text-align:center; 
+				font-size: 12px; 
+				font-weight:bold;
+				height: 15px;
+
+			}
+			.subtitulo{
+				font-size:10px;
+			}
+			.item{
+				font-size:17px;
+				font-weight:bold;
+				text-transform: uppercase;
+		
+			}
+			.itemVazio{
+				color:#fff;
+		
+			}
+			th, td {
+			  padding: 1px 5px;
+			}
+			
+
+			   
+
+			
+			@media print {
+				.quebra {page-break-after: always;}
+			  .print {
+			    display: none;
+			  }
+	
+			}   
+			   
+			   	
+				   .checkbox-label {    
+				   font-size: 12px;}
+				   
+			   
+				   fieldset{
+				   	height: 30px;
+				   }
+				   table{
+				  
+				 
+				   }
+			   
+			</style>
+	</head>
+	<body>
+<div>
+	<table>
+      <tr>
+      	<td > 
+      		<table style="width:100%; border:1px solid">
+      			<tr>
+        <td  style="padding: 5 5; border-right:1px solid"><img src="{{URL}}/resources/imagens/logoSusBpai.png" heights="70" Alt="SUS"></td>
+        <td  >
+        <img src="{{URL}}/resources/imagens/logoBPAI.png" heights="70" Alt="Registro das Ações Ambulatoriais de Saúde <br>Formulário da Atenção Psicossocial no CAPS">
+         </td>
+      			
+      			</tr>
+      		</table>
+      	
+      	</td>
+      </tr>
+
+      <tr>
+      	<td>
+	    		<table style="width:100%;  border:1px solid">
+			    		<tr>
+			    			<td style="width: 150px">
+			    				<fieldset style="text-align:center">
+						    <legend class="subtitulo">CNES</legend>
+						    <span class="item">{{cnes}}</span>
+					  	</fieldset>	
+			    			</td>
+			    			<td colspan="1">
+			    				<fieldset>
+								    <legend class="subtitulo">NOME DO ESTABELECIMENTO</legend>
+								    <span class="item">{{estabelecimento}}</span>
+						  		</fieldset>
+			    			</td>
+			    			<td style="text-align:center" colspan="2">
+			    				<fieldset>
+								    <legend class="subtitulo">CNS DO PROFISSIONAL</legend>
+								    <span class="item">{{cartaoSus}}</span>
+						  		</fieldset>
+			    			</td>
+			    		</tr>
+			    		<tr>
+			    			<td styles="width: 150px">
+			    				<fieldset style="text-align:center">
+								    <legend class="subtitulo">CBO</legend>
+								    <span class="item">{{cbo}}</span>
+					  			</fieldset>	
+			    			</td>
+			    			<td colspans="7">
+			    				<fieldset>
+								    <legend class="subtitulo">EQUIPE</legend>
+								    <span class="itemVazio"></span>
+						  		</fieldset>
+			    			</td>
+			    			<td styles="width: 150px">
+			    				<fieldset style="text-align:center">
+								    <legend class="subtitulo">MÊS / ANO</legend>
+								    <span class="item">{{competencia}}</span>
+					  			</fieldset>	
+			    			</td>
+				    		<td styles="width: 150px">
+				    			<fieldset style="text-align:center">
+									    <legend class="subtitulo">FOLHA</legend>
+									    <span class="item"></span>
+						  		</fieldset>	
+			    			</td>
+			    		</tr>
+			    		
+			    	</table>
+      	</td>
+      </tr>
+	   <tr>
+	   		<td>
+	   			<table style=" border:1px solid">
+	   					{{itens}}		
+	   			</table>
+	   		<td>
+	   </tr>	
+    
+			
+
+</table>
+</div>
+<div style="font-size: 12px; margin-top: 10px; ">
+	<span >Total de Atendimentos: {{total}}</span>
+</div>
+	
+<br><br>
+<div class="quebra"></div>
+
+	
+	
+	</body>
+</html>
+
+
+
+
+
+
+
+

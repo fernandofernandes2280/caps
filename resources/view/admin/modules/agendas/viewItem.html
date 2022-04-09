@@ -1,0 +1,31 @@
+
+<tr>					
+	<td class="text-center">{{codPronto}}</td>
+	<input type="text" name="idAgendaItems[{{num}}]" value="{{idAgendaItems}}" hidden/>
+	<td >{{paciente}}</td>
+	<td class="text-center" >
+		   <select class="custom-select sala" id="procedimento" name="procedimento[{{num}}]" required>
+		        {{optionProcedimento}}
+		   </select>
+	
+	</td>
+	<td class="text-center" >
+		   <select class="custom-select sala" name="presenca[{{num}}]" required>
+		        {{optionPresenca}}
+		   </select>
+	
+	</td>
+
+	<td class="text-center">
+		<a href="#" onClick="document.getElementById('form_agendaItems').submit();" >
+			<i class="material-icons" style="font-size: 30px;" rel="tooltip" title="Salvar alterações">save</i>
+		</a>
+		<a href="{{URL}}/admin/agendas/{{idPac}}/remove/{{idAgenda}}">
+			<i class="material-icons" style="font-size: 30px;" rel="tooltip" title="Remove paciente da agenda">highlight_off</i>
+		</a>
+	
+	</td>
+</tr>
+
+
+ 

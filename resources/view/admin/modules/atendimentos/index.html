@@ -1,0 +1,136 @@
+								<div class="row">
+									<div class="col-sm-6 card-title">
+										<h5>Atendimentos > {{acao}}</h5>
+									</div>
+									<div class="col-sm-6">
+										{{statusMessage}}
+									</div>
+								</div>
+	
+									<div class="row ">
+										<div class="col-3">
+											<label style="margin-bottom:0px">Prontuário</label><br>
+											<label class="text-light"><h6>{{prontuario}}</h6></label>
+										</div>
+										<div class="col-5">
+											<label style="margin-bottom:0px">Nome</label><br>
+											<label class="text-light"><h6>{{nome}}</h6></label>
+											<a href="{{URL}}/admin/pacientes/{{prontuario}}/edit" >
+												  <i class="material-icons" style="font-size: 19px;" rel="tooltip" title="Editar Paciente">edit</i>
+											</a>
+										</div>
+										<div class="col-1">
+											<label style="margin-bottom:0px">Status</label><br>
+											<label class="text-light"><h6>{{status}}</h6></label>
+										</div>
+										<div class="col-3 align-self-end text-right">
+																				    	 
+										     	<a href="{{URL}}/admin/atendimentos/{{prontuario}}/atendimento">
+										     		<button type="button" class="btn btn-success btn-round btn-sm " rel="tooltip" title="Novo Atendimento">
+													<i class="material-icons" style="font-size: 30px;">add_circle_outline</i>
+													</button>
+												</a>
+												<a href="{{URL}}/admin/atendimentos/avulso">
+										     		<button type="button" class="btn btn-success btn-round btn-sm " rel="tooltip" title="Atendimento Avulso">
+													<i class="material-icons" style="font-size: 30px;">bookmark</i>
+													</button>
+												</a>
+												<a href="{{URL}}/admin/pacientes">
+													<button type="button" class="btn btn-warning btn-round btn-sm " rel="tooltip" title="Voltar">
+														<i class="material-icons" style="font-size: 30px;">reply</i>
+													</button>
+												</a>	
+										</div>
+									</div>
+
+									<div>
+										<form  method="post" action="?page=1">
+										  <div class="form-row">
+										    <div class="col-md-3 mb-2">
+										      <label for="data">Data</label>
+										      <input type="date" max="9999-12-31" class="form-control-pessoal" id="data" name="data" value="{{data}}" required  >
+										      <input id="codPronto" name="codPronto" value="{{prontuario}}" hidden  >
+										    </div>
+										    
+										    <div class="col-md-4 mb-2">
+										     
+										       		<label for="profissional">Profissional</label>
+												       <select class="custom-select" id="profissional" name="profissional" required>
+												       <option></option>
+													        {{optionProfissional}}
+													   </select>
+												
+										      
+										      
+										    </div>
+										     
+										    <div class="col-md-3 mb-2">
+										      
+										      			<label for="procedimento">Procedimento</label>
+												       <select class="custom-select" id="procedimento" name="procedimento" required>
+												       <option></option>
+													        {{optionProcedimento}}
+													   </select>
+										      
+										      
+										    </div>
+										    
+										    <div class="col-md-1 mb-2">
+										      <label for="status">Status</label>
+												<select class="custom-select" id="status" name="status" required>
+												 <option></option>
+												  <option {{selectedP}} value="P">P</option>
+												  <option {{selectedF}} value="F">F</option>
+												</select>
+										    </div>
+										    <div class="col-md-1 text-center" style="margin-top: 2%" >
+										    	 
+										     <button class="btn btn-facebook btn-sm btn-round" type="submit" rel="tooltip" title="Salvar">
+										     	<i class="material-icons" style="font-size: 30px;">save</i>
+										     </button>
+										    </div>
+										  </div>
+										</form>
+									
+									</div>
+									<div class="table-responsive">
+									  	<table class="table  table-hover mt-3">
+									  		<thead class=" text-light text-center titulo-tabela">
+									  			<tr >
+									  				<th>Pront.</th>
+									  				<th>Data</th>
+									  				<th>Profissional</th>
+									  				<th>Procedimento</th>
+									  				<th>Status</th>
+									  				<th>Idade</th>
+									  				<th style="width:11%">Ações</th>
+									  			</tr>
+									  		</thead>
+									  		<tbody>
+									  			{{itens}}
+									  		</tbody>
+									  	</table>
+									 </div>
+									    <div class="row" >
+										  	<div class="col-12 pt-0 ">
+										  		<span>{{pagination}}</span>
+										  	</div>
+										   	<div class="col-12 text-right pt-3">
+										   		<span>Total de registros encontrados: {{totalAtendimentos}}</span>
+										  	</div>
+									  </div> 
+
+							
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  

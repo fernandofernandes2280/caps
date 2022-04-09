@@ -1,0 +1,372 @@
+<html>
+	<head>
+		<style>
+
+
+			body{
+			
+				font-family: "Open Sans", sans-serif;
+			margin: 0;
+			}
+			
+			.titulo{
+				background: #000; 
+				color: #fff; 
+				text-align:center; 
+				font-size: 12px; 
+				font-weight:bold;
+				height: 15px;
+
+			}
+			.subtitulo{
+				font-size:10px;
+			}
+			.item{
+				font-size:17px;
+				font-weight:bold;
+				text-transform: uppercase;
+		
+			}
+			.itemVazio{
+				color:#fff;
+		
+			}
+			th, td {
+			  padding: 1px 5px;
+			}
+			
+
+			   
+
+			
+			@media print {
+				.quebra {page-break-after: always;}
+			  .print {
+			    display: none;
+			  }
+	
+			}   
+			   
+			   	
+				   .checkbox-label {    
+				   font-size: 12px;}
+				   
+			   
+				   fieldset{
+				   	height: 25px;
+				   }
+			   
+			</style>
+	</head>
+	<body>
+<div style="border: 2px solid; width: 1050px;  border-radius: 10px; margin-left:2px;">
+	<table>
+      <tr>
+        <td colspan="2" style="padding: 5 5; border-right:1px solid"><img src="{{URL}}/resources/imagens/logoMS-SUS.png" height="70" Alt="SUS"></td>
+        <td colspan="5" >
+        <img src="{{URL}}/resources/imagens/logoRAAS.png" height="63" Alt="Registro das Ações Ambulatoriais de Saúde <br>Formulário da Atenção Psicossocial no CAPS">
+         </td>
+      </tr>
+
+      <tr>
+      	<td colspan="7">
+	      	<fieldset class="titulo" style="border: 0">
+			    <legend ></legend>
+			    <span class="item">IDENTIFICAÇÃO DO ESTABELECIMENTO DE SAÚDE</span>
+		  	</fieldset>
+      	</td>
+      </tr>
+
+      <tr>
+      	<td colspan="6">
+      		<fieldset>
+			    <legend class="subtitulo">NOME DO ESTABELECIMENTO</legend>
+			    <span class="item">CENTRO DE ATENÇÃO PSICOSSOCIAL DE ALCOOL E OUTRAS DROGAS CAPS AD</span>
+		  	</fieldset>
+      	</td>
+      	<td>
+      		<fieldset style="border: 3px solid; text-align:center">
+			    <legend class="subtitulo">CNES</legend>
+			    <span class="item">{{cnes}}</span>
+		  	</fieldset>
+      	</td>
+      </tr>
+      <tr>
+      	<td colspan="7">
+	      	<fieldset class="titulo" style="border: 0">
+			    <legend ></legend>
+			    <span class="item">IDENTIFICAÇÃO DO USUÁRIO DO SUS</span>
+		  	</fieldset>
+      	</td>
+      </tr>
+
+      <tr>
+      	<td >
+      		<fieldset>
+			    <legend class="subtitulo">PRONTUÁRIO</legend>
+			    <span class="item">{{prontuario}}</span>
+		  	</fieldset>
+      		
+      	</td>
+      	<td colspan="6">
+      		<fieldset>
+			    <legend class="subtitulo">NOME DO PACIENTE</legend>
+			    <span class="item">{{nome}}</span>
+		  	</fieldset>
+      	</td>
+      </tr>
+
+       <tr>
+      	<td colspan="3">
+      		<fieldset style="border: 3px solid; text-align:center">
+			    <legend class="subtitulo">CARTÃO NACIONAL DE SAÚDE(CNS)</legend>
+			    <span class="item" style="border-bottom:1px solid">{{cartaoSus}}</span>
+		  	</fieldset>
+      	</td>
+      	<td>
+      		<fieldset>
+			    <legend class="subtitulo">SEXO</legend>
+			    <span class="item">{{sexo}}</span>
+		  	</fieldset>
+      	</td>
+      	<td colspan="2">
+      		<fieldset>
+			    <legend class="subtitulo">DATA DE NASCIMENTO</legend>
+			    <span class="item">{{dataNasc}}</span>
+		  	</fieldset>
+      	</td>
+      	<td colspan="1">
+      		<fieldset>
+			    <legend class="subtitulo">NACIONALIDADE</legend>
+      			<span class="itemVazio">xxxx</span>			    
+		  	</fieldset>
+      	</td>
+      </tr>
+      
+       <tr>
+      	<td colspan="1">
+      		<fieldset>
+			    <legend class="subtitulo">RAÇA/COR</legend>
+      			<span class="itemVazio">xxxx</span>			    
+		  	</fieldset>
+      	</td>
+      	<td colspan="2">
+      		<fieldset>
+			    <legend class="subtitulo">ETNA INDÍGENA</legend>
+      			<span class="itemVazio">xxxx</span>			    
+		  	</fieldset>
+      	</td>
+      	<td colspan="4">
+      		<fieldset>
+			    <legend class="subtitulo">NOME DA MÃE</legend>
+      			<span class="item">{{mae}}</span>			    
+		  	</fieldset>
+      	</td>
+      </tr>
+      
+       <tr>
+      	<td colspan="4">
+      		<fieldset>
+			    <legend class="subtitulo">NOME DO RESPONSÁVEL</legend>
+      			<span class="itemVazio">xxxx</span>			    
+		  	</fieldset>
+      	</td>
+      	<td colspan="2">
+      		<fieldset>
+			    <legend class="subtitulo">MUNICÍPIO DE RESIDÊNCIA</legend>
+      			<span class="item">{{cidade}}</span>			    
+		  	</fieldset>
+      	</td>
+      	<td colspan="1">
+      		<fieldset >
+			    <legend class="subtitulo">UF</legend>
+	      		<span class="item">{{uf}}</span>
+		  	</fieldset>
+      	</td>
+      </tr>
+
+       <tr>
+      	<td colspan="1">
+      		<fieldset>
+			    <legend class="subtitulo">CÓD IBGE MUNICÍPIO</legend>
+	      		<span class="itemVazio">xxxx</span>
+		  	</fieldset>
+      	</td>
+      	<td colspan="2">
+      		<fieldset>
+			    <legend class="subtitulo">CEP</legend>
+	      		<span class="item">{{cep}}</span>
+		  	</fieldset>
+      	</td>
+      	<td colspan="3">
+      		<fieldset >
+			    <legend class="subtitulo">ENDEREÇO (RUA, NÚMERO)</legend>
+	      		<span class="item">{{endereco}}</span>
+		  	</fieldset>
+      	</td>
+      	<td colspan="2">
+      		<fieldset >
+			    <legend class="subtitulo">BAIRRO</legend>
+	      		<span class="item">{{bairro}}</span>
+		  	</fieldset>
+      	</td>
+      </tr>
+
+       <tr>
+      	<td colspan="5">
+      		<fieldset>
+			    <legend class="subtitulo">COMPLEMENTO</legend>
+	      		<span class="itemVazio">xxxx</span>
+		  	</fieldset>
+      	</td>
+      	<td colspan="1">
+      		<fieldset >
+			    <legend class="subtitulo">TELEFONE CELULAR</legend>
+	      		<span class="item">{{fone1}}</span>
+		  	</fieldset>
+      	</td>
+      	<td colspan="1">
+      		<fieldset>
+			    <legend class="subtitulo">TELEFONE DE CONTATO</legend>
+	      		<span class="item">{{fone2}}</span>
+		  	</fieldset>
+      	</td>
+      </tr>      
+      
+      <tr>
+      	<td colspan="7">
+	      	<fieldset class="titulo" style="border: 0">
+			    <legend ></legend>
+			    <span class="item">DADOS DO ATENDIMENTO</span>
+		  	</fieldset>
+      	</td>
+      </tr>
+
+       <tr>
+      	<td colspan="1">
+      		<fieldset style="border: 3px solid">
+			    <legend class="subtitulo">DATA DE INÍCIO</legend>
+	      		<span class="item">{{dataCad}}</span>
+		  	</fieldset>
+      	</td>
+      	<td colspan="1">
+      		<fieldset style="border: 3px solid">
+			    <legend class="subtitulo">COMPETÊNCIA</legend>
+	      		<span class="item">{{competencia}}</span>
+		  	</fieldset>
+      	</td>
+      	<td colspan="5">
+      		<fieldset >
+			    <legend class="subtitulo">ORIGEM DO PACIENTE</legend>
+			    	<div class="checkbox-label">   
+			     		<input type="checkbox" value="0" name="campo-checkbox" id="campo-checkbox1" /><label  for="campo-checkbox1">Serviço de Urgência</label>   
+			     		<input type="checkbox" value="0" name="campo-checkbox" id="campo-checkbox1" /><label  for="campo-checkbox1">Atenção Básica</label>
+			     		<input type="checkbox" value="0" name="campo-checkbox" id="campo-checkbox1" /><label for="campo-checkbox1">Internação Hospitalar</label>   
+			     		<input type="checkbox" value="0" name="campo-checkbox" id="campo-checkbox1" /><label  for="campo-checkbox1">Centro Oncológico</label>
+			     		<input type="checkbox" value="0" name="campo-checkbox" id="campo-checkbox1" checked /><label  for="campo-checkbox1">Outros</label>
+			     	</div>
+		  	</fieldset>
+      	</td>
+      </tr> 
+
+       <tr>
+      	<td colspan="1">
+      		<fieldset>
+			    <legend class="subtitulo">CID 10 PRINCIPAL</legend>
+	      		<span class="item">{{cid1}}</span>
+		  	</fieldset>
+      	</td>
+      	<td colspan="6">
+      		<fieldset>
+			    <legend class="subtitulo">DESCRIÇÃO DO DIAGNÓSTICO PRINCIPALL</legend>
+	      		<span class="item">{{cid1Descricao}}</span>
+		  	</fieldset>
+      	</td>
+      </tr>                 
+      
+       <tr style="height: 27px">
+      	<td colspan="1">
+      		<fieldset>
+			    <legend class="subtitulo">CID 10 CAUSAS ASS</legend>
+	      		<span class="item">{{cid2}}</span>
+		  	</fieldset>
+      	</td>
+      	<td colspan="6">
+      		<fieldset>
+			    <legend class="subtitulo">DESCRIÇÃO DO DIAGNÓSTICO CAUSAS ASSOCIADAS</legend>
+	      		<span class="item">{{cid2Descricao}}</span>
+		  	</fieldset>
+      	</td>
+      </tr>                 
+                      
+       <tr>
+      	<td colspan="4">
+      		<span class="subtitulo">EXISTE COBERTURA DE ESTRATÉGIA SAÚDE DA FAMÍLIA?</span>
+      		<input type="checkbox" value="0" name="campo-checkbox" id="campo-checkbox1"  /><label class="item"  for="campo-checkbox1">SIM</label>
+      		<input type="checkbox" value="0" name="campo-checkbox" id="campo-checkbox1"  /><label class="item"  for="campo-checkbox1">NÃO</label>
+      	</td>
+      	<td colspan="3">
+      		<fieldset>
+			    <legend class="subtitulo">CNES</legend>
+	      		<span class="itemVazio">xxxx</span>
+		  	</fieldset>
+      	</td>
+      </tr>   
+
+       <tr>
+      	<td colspan="6">
+      		<fieldset >
+			    <legend class="subtitulo">DESTINO DO PACIENTE</legend>
+			    	<div class="checkbox-label">   
+			     		<input type="checkbox" value="0" name="campo-checkbox" id="campo-checkbox1" /><label  for="campo-checkbox1">Permanência</label>   
+			     		<input type="checkbox" value="0" name="campo-checkbox" id="campo-checkbox1" /><label  for="campo-checkbox1">Alta Clínica</label>
+			     		<input type="checkbox" value="0" name="campo-checkbox" id="campo-checkbox1" /><label for="campo-checkbox1">Encaminhamento AD1</label>   
+			     		<input type="checkbox" value="0" name="campo-checkbox" id="campo-checkbox1" /><label  for="campo-checkbox1">Alta Administrativa</label>
+			     		<input type="checkbox" value="0" name="campo-checkbox" id="campo-checkbox1" /><label  for="campo-checkbox1">Admissão na Urgência</label>
+			     		<input type="checkbox" value="0" name="campo-checkbox" id="campo-checkbox1" /><label  for="campo-checkbox1">Internação Hospitalar</label>
+			     		<input type="checkbox" value="0" name="campo-checkbox" id="campo-checkbox1" /><label  for="campo-checkbox1">Óbito</label>
+			     	</div>
+		  	</fieldset>
+      	</td>
+      	<td colspan="1">
+      		<fieldset>
+			    <legend class="subtitulo">DATA DE CONCLUSÃO</legend>
+	      		<span class="itemVazio">xxxx</span>
+		  	</fieldset>
+      	</td>
+      </tr>  
+
+
+
+      <tr>
+      	<td colspan="7">
+	      	<fieldset class="titulo" style="border: 0">
+			    <legend ></legend>
+			    <span class="item">AÇÕES REALIZADAS</span>
+		  	</fieldset>
+      	</td>
+      </tr>
+
+			{{itens}}
+
+</table>
+</div>
+<div style="font-size: 12px; margin-top: 10px; ">
+	<span >Total de Atendimentos: {{total}}</span>
+</div>
+	
+<br><br>
+<div class="quebra"></div>
+
+	
+	
+	</body>
+</html>
+
+
+
+
+
+
+
+

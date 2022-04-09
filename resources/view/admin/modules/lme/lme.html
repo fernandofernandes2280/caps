@@ -1,0 +1,312 @@
+<style>
+html{margin:30px 40px 5px 40px;
+	font-family: Arial, Helvetica, sans-serif;} /*cima direita */
+
+	.item{
+		font-size:14px;
+		font-weight:bold;
+		text-transform: uppercase;
+		}
+		
+ fieldset{
+		   	height: 10px;
+		   	padding-top: 10px
+		   }
+		   
+		input[type="checkbox"]{
+    
+   height: 12;
+    
+}
+
+</style>
+
+
+
+<table border="1" style="font-size: 11px;font-family: Arial, Helvetica, sans-serif; border-collapse: collapse">
+	<tr>
+		<td colspan="3"  align="center"><span><img src="{{URL}}/resources/imagens/logoSus.jpeg" class="mb-0"  height="50" alt="LogoSUS" ></span></td>
+		
+	</tr>
+	<tr>
+		<td colspan="3" align="center" style="background: black; color: white;font-size: 12px;font-weight: bold;">COMPONENTE ESPECIALIZADO DA ASSISTÊNCIA FARMACÊUTICA</td>
+	</tr>
+	<tr>
+		<td colspan="3" align="center" style="background: lightgray; color: black;font-size: 12px;font-weight: bold;">LAUDO DE SOLICITAÇÃO, AVALIAÇÃO DE MEDICAMENTO(S)</td>
+	</tr>
+	<tr>
+		<td colspan="3" align="center" style="color: black;font-size: 12px;font-weight: bold;">SOLICITAÇÃO DE MEDICAMENTO(S)</td>
+	</tr>
+		<tr>
+		<td colspan="3" align="center" style="color: black;font-size: 12px;font-weight: bold;">CAMPOS DE PREENCHIMENTO EXCLUSIVO PELO MÉDICO SOLICITANTE</td>
+	</tr>
+	<tr>
+		<td >
+	      	<fieldset>
+			    <legend ><sup>1 </sup>Número do CNES<b style="font-size: 16px">*</b></legend>
+			    <span class="item">2.020.645</span>
+		  	</fieldset>
+      	</td>
+      	<td colspan="2">
+	      	<fieldset>
+			    <legend ><sup>2 </sup>Nome do estabelecimento de Saúde solicitante</legend>
+			    <span class="item">SERVIÇO DE PSIQUIATRIA/HCAL</span>
+		  	</fieldset>
+      	</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+	      	<fieldset>
+			    <legend ><sup>3 </sup>Nome completo do paciente<b style="font-size: 16px">*</b></legend>
+			    <span class="item">{{nome}}</span>
+		  	</fieldset>
+      	</td>
+      	<td >
+	      	<fieldset>
+			    <legend ><sup>5 </sup>Peso do paciente(kg)<b style="font-size: 16px">*</b></legend>
+		  	</fieldset>
+      	</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+	      	<fieldset>
+			    <legend ><sup>4 </sup>Nome da mãe do paciente<b style="font-size: 16px">*</b></legend>
+			    <span class="item">{{mae}}</span>
+		  	</fieldset>
+      	</td>
+      	<td >
+	      	<fieldset>
+			    <legend ><sup>6 </sup>Altura do paciente(cm)<b style="font-size: 16px">*</b></legend>
+		  	</fieldset>
+      	</td>
+      
+	</tr>
+	
+	<tr>
+		<td colspan="3">
+
+		<table CELLPADDING="1"  border="1" style="font-size: 14px;font-family: Arial, Helvetica, sans-serif;font-weight:bold; border-collapse: collapse" width="100%">
+				<tr align=center>
+					<td rowspan="2" colspan="2" style="font-size: 14px; "><sup>7 </sup>Medicamentos<b style="font-size: 16px">*</b></td>
+					<td colspan="6" style="font-size: 14px;" ><sup>8 </sup>Quantidade solicitada<b style="font-size: 16px">*</b></td>
+				</tr>
+				<tr align=center>
+					<td>1º mês</td>
+					<td>2º mês</td>
+					<td>3º mês</td>
+					<td>4º mês</td>
+					<td>5º mês</td>
+					<td>6º mês</td>
+				</tr>
+				<tr align=center>
+					<td width="20">1</td>
+					<td style="width: 300px">{{med1}}</td>
+					<td>{{qtd1Med1}}</td> <td>{{qtd2Med1}}</td>  <td>{{qtd3Med1}}</td> <td>{{qtd4Med1}}</td> <td>{{qtd5Med1}}</td> <td>{{qtd6Med1}}</td>
+				</tr>
+				<tr align=center>
+					<td>2</td>
+					<td>{{med2}}</td>
+					<td>{{qtd1Med2}}</td> <td>{{qtd2Med2}}</td>  <td>{{qtd3Med2}}</td> <td>{{qtd4Med2}}</td> <td>{{qtd5Med2}}</td> <td>{{qtd6Med2}}</td>
+					
+				</tr>
+				<tr align=center >
+					<td>3</td>
+					<td>{{med3}}</td>
+					<td>{{qtd1Med3}}</td> <td>{{qtd2Med3}}</td>  <td>{{qtd3Med3}}</td> <td>{{qtd4Med3}}</td> <td>{{qtd5Med3}}</td> <td>{{qtd6Med3}}</td>
+				</tr>
+				<tr align=center>
+					<td>4</td>
+					<td>{{med4}}</td>
+					<td>{{qtd1Med4}}</td> <td>{{qtd2Med4}}</td>  <td>{{qtd3Med4}}</td> <td>{{qtd4Med4}}</td> <td>{{qtd5Med4}}</td> <td>{{qtd6Med4}}</td>
+				</tr>
+				<tr align=center>
+					<td>5</td>
+					<td>{{med5}}</td>
+					<td>{{qtd1Med5}}</td> <td>{{qtd2Med5}}</td>  <td>{{qtd3Med5}}</td> <td>{{qtd4Med5}}</td> <td>{{qtd5Med5}}</td> <td>{{qtd6Med5}}</td>
+				</tr>
+				<tr align=center>
+					<td>6</td>
+					<td>{{med6}}</td>
+					<td>{{qtd1Med6}}</td> <td>{{qtd2Med6}}</td>  <td>{{qtd3Med6}}</td> <td>{{qtd4Med6}}</td> <td>{{qtd5Med6}}</td> <td>{{qtd6Med6}}</td>
+				</tr>
+				
+			</table>
+		
+		
+		</td>
+		
+	</tr>
+	<tr>
+		<td colspan="3">
+			<table width="100%">
+				<tr>
+					<td width="100">
+				      	<fieldset>
+						    <legend ><sup>9 </sup>CID-10<b style="font-size: 16px">*</b></legend>
+						    <span class="item">{{cid}}</span>
+					  	</fieldset>
+			      	</td>
+			      	<td colspan="2" >
+				      	<fieldset>
+						    <legend ><sup>10 </sup>Diagnóstico</legend>
+						    <span class="item"></span>
+					  	</fieldset>
+			      	</td>		
+				</tr>			
+			</table>
+		</td>
+		
+      
+	</tr>
+	<tr>
+		<td colspan="3">
+	      	<fieldset style="height: 22px;">
+			    <legend ><sup>11 </sup>Anamnese<b style="font-size: 16px">*</b></legend>
+			    <label class="item" style="font-size: 12px">{{anamnese}}</label>
+		  	</fieldset>
+      	</td>
+	</tr>
+		<tr>
+		<td colspan="3">
+	      	<fieldset style="height: 29px;">
+			    <legend ><sup>12 </sup>Paciente realizou tratamento prévio ou está em tratamento da doença?</legend>
+			    <span class="item" style="font-size: 12px">
+			    	<input type="checkbox"><label>NÃO</label> <input type="checkbox" checked><label>SIM</label>. Relatar:
+			    	{{tratamentoAnterior}}
+			    </span>
+		  	</fieldset>
+      	</td>
+	</tr>
+	
+	<tr>
+		<td colspan="3" align="center">
+			<sup>13 </sup><b style="font-size: 16px">
+			Atestado de Capacidade*</b><br>
+			A solicitação do medicamento deverá ser realizada pelo paciente. Entretanto fica dispensada a obrigatoriedade da presença
+			física do paciente considerado incapaz de acordo com os artigos 3º e 4º do Código Civil. O paciente é considerado incapaz?
+			&nbsp;<input type="checkbox" style="height:12"><span>NÃO&nbsp;&nbsp;</span><input type="checkbox"><label>SIM</label>. Indicar o nome do responsável pelo paciente, o qual
+			poderá realizar a solicitação do medicamento<br>
+
+			___________________________________________<br>
+
+			Nome do responsável 
+			
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2" >
+	      	<fieldset>
+			    <legend ><sup>14 </sup>Nome do médico solicitante<b style="font-size: 16px">*</b></legend>
+			    <span class="item">JOSÉ AUGUSTO DE SOUZA LEITE</span>
+		  	</fieldset>
+      	</td>
+      	<td rowspan="2">
+	      	<fieldset style="	height: 50px; width: 195px">
+			    <legend >17 Assinatura e carimbo do médico<b style="font-size: 16px">*</b></legend>
+			    <span class="item"></span>
+		  	</fieldset>
+      	</td>
+	</tr>
+	<tr>
+		<td style="font-size: 10px; width: 350px">
+	      	<fieldset >
+			    <legend ><sup>15 </sup>Número do Cartão Nacional de Saúde(CNS) do médico solicitante<b style="font-size: 16px">*</b></legend>
+			    <span class="item"><b>201 073 062 760 002</b></span>
+		  	</fieldset>
+      	</td>
+      	<td style="font-size: 10px; width: 140px">
+	      	<fieldset>
+			    <legend ><sup>16 </sup>Data da solicitação<b style="font-size: 16px">*</b></legend>
+			    <span class="item">{{data}}</span>
+		  	</fieldset>
+      	</td>
+	</tr>
+	<tr>
+		<td colspan="3" height="40"> 
+			<sup>18 </sup><b>CAMPOS ABAIXO PREENCHIDOS POR</b><b style="font-size: 16px">*</b>:<br> <input type="checkbox"><label>Paciente</label><input type="checkbox"><label>Mãe do paciente</label>
+			<input type="checkbox"><label>Responsável <sup>(descrito no ítem 13) </sup></label><input type="checkbox"><label>Médico solicitante</label>
+			<input type="checkbox"><label>Outro</label>, informar nome:___________________________________e CPF:____________________________
+		</td>
+	</tr>
+	<tr>
+		<td colspan="3">
+			<table  width="100%">
+				<tr>
+					<td width="340" >
+					<fieldset style="height: 50px; padding-top: 12px">
+					    <legend ><sup>19 </sup>Raça/Cor/Etnia informado pelo paciente ou responsável<b style="font-size: 16px">*</b></legend>
+					    <input type="checkbox"><label>Branca</label>
+					    <input type="checkbox"><label>Amarela</label><br>
+					    <input type="checkbox"><label>Preta</label>
+					    &nbsp;&nbsp;<input type="checkbox"><label>Indígena. Informar Etnia:</label>__________________________<br>
+					    <input type="checkbox"><label>Parda</label>
+					    &nbsp;<input type="checkbox"><label>Sem informação</label><br>
+				  	</fieldset>
+					
+					</td>
+					<td >
+				      	<fieldset  style="height: 40px;  padding-top: 25px">
+						    <legend ><sup>20 </sup>Telefone(s) para contato do paciente</legend>
+						   <br><span> _______________________________</span>
+					  	</fieldset>
+			      	</td>
+				</tr>
+			</table>
+		
+		</td>
+	</tr>
+	
+	<tr>
+		<td colspan="3">
+			<table  width="100%">
+				<tr>
+					<td width="200" >
+						<fieldset style="height: 15px;">
+						    <legend ><sup>21 </sup>Número do documento do paciente</legend>
+						    <input type="checkbox"><label>CPF</label> ou <input type="checkbox" checked><label>CNS</label>
+						    &emsp;&emsp;<b style="font-size: 14px">{{cartaoSus}}</b>
+					  	</fieldset>
+					
+					</td>
+					<td rowspan="2">
+				      		<fieldset style="height: 65px;">
+							    <legend ><sup>23 </sup>Assinatura do responsável pelo preenchimento<b style="font-size: 16px">*</b></legend>
+							    <span class="item"></span>
+						  	</fieldset>
+			      	</td>
+				</tr>
+					<tr>
+					<td >
+				      	<fieldset>
+						    <legend ><sup>22 </sup>Correio eletrônico do paciente</legend>
+						    <span class="item"></span>
+					  	</fieldset>
+			      	</td>
+			      	
+				</tr>
+			</table>
+		
+		</td>
+	</tr>
+
+
+</table>
+<span style="font-size: 10; font-weight: bold;font-family: Arial, Helvetica, sans-serif;">*CAMPOS DE PREENCHIMENTO OBRIGATÓRIO</span>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 

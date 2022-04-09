@@ -1,0 +1,261 @@
+
+<form  method="post" action="?page=1">
+	<div class="row">
+			<div class="col-4 " >
+			<h5>Pacientes > {{title}} > Pront.: {{prontuario}}</h5>
+			<input type="text" value="{{prontuario}}" hidden name="codPronto"/>
+		</div>
+ 		<div class="col-3 " >
+			{{statusMessage}}
+		</div>	
+	
+
+	<div class="col-5 text-right">
+		 <a href="{{URL}}/admin/pacientes/{{prontuario}}/lme" rel="tooltip" title="Laudo+Termo+Escala">
+               <i class="material-icons" style="font-size: 30px;">medication</i>
+		</a>
+	
+		 <a href="{{URL}}/admin/pacientes/{{prontuario}}/capa/imprimir" target="_blank" rel="tooltip" title="Imprimir Capa">
+               <i class="material-icons" style="font-size: 30px;">print</i>
+		</a>
+		 <a href="{{URL}}/admin/atendimentos/{{prontuario}}/atendimento" rel="tooltip" title="Atendimentos" {{hidden}}>
+                <i class="material-icons" style="font-size: 30px;">assignment</i>
+			</a>
+	  <button class="btn btn-facebook btn-sm btn-round" type="submit" rel="tooltip" title="Salvar">
+     	<i class="material-icons" style="font-size: 30px;">save</i>
+     </button>
+		 
+		 <a href="{{URL}}/admin/pacientes/new">
+			<button type="button" class="btn btn-success btn-round btn-sm " rel="tooltip" title="Novo Paciente">
+			<i class="material-icons" style="font-size: 30px;">add_circle_outline</i>
+			</button>
+		</a>
+		
+		<a href="{{URL}}/admin/pacientes">
+			<button type="button" class="btn btn-warning btn-round btn-sm " rel="tooltip" title="Voltar">
+				<i class="material-icons" style="font-size: 30px;">reply</i>
+			</button>
+		</a>
+		
+		
+		
+		
+	</div>
+</div>
+
+  <div class="form-row">
+    <div class="col-md-5 mb-2">
+      <label for="nome">Nome</label>
+      <input type="text" class="form-control-pessoal" id="nome" name="nome" value="{{nome}}" required  >
+    </div>
+    
+    <div class="col-md-2 mb-2">
+      <label for="cep">Cep</label>
+      <input type="text" class="form-control-pessoal" data-action="{{URL}}/admin/delete" data-id="3" id="cep" name="cep" value="{{cep}}">
+    </div>
+     
+    <div class="col-md-5 mb-2">
+      <label for="endereco">Endereço</label>
+      <small class="text-muted"> logradouro (rua, avenida, ..) + número</small>
+      <input type="text" class="form-control-pessoal" id="endereco" name="endereco" value="{{endereco}}" >
+    </div>
+    
+  </div>
+  
+  <div class="form-row">
+  	<div class="col-md-3">
+		      <label for="bairro">Bairro</label>
+		       <select class="custom-select" id="bairro" name="bairro" required>
+			        {{optionBairros}}
+			   </select>
+    </div>
+    
+
+  	<div class="col-md-2">
+      <label for="cidade">Cidade</label>
+      <input type="text" class="form-control-pessoal" id="cidade" name="cidade" value="{{cidade}}" >
+    </div>  
+      	<div class="col-md-1">
+      <label for="uf">UF</label>
+		<input type="text" class="form-control-pessoal" id="uf" name="uf" value="{{uf}}" >    </div>  
+    
+   	<div class="col-md-3 mb-2">
+		      <label for="naturalidade">Naturalidade</label>
+		      <input type="text" class="form-control-pessoal" id="naturalidade" name="naturalidade" value="{{naturalidade}}">
+		    </div>  
+
+		<div class="col-md-3 mb-2">
+		      <label for="escolaridade">Escolaridade</label>
+		       <select class="custom-select" id="escolaridade" name="escolaridade" required>
+			        {{optionEscolaridade}}
+			   </select>
+		    </div>			
+		  
+		    
+		   		
+    
+     
+   </div>   
+   
+   <div class="form-row">
+   		 <div class="col-md-2 mb-2">
+		      <label for="sexo">Sexo</label><br>
+		      <select class="custom-select" id="sexo" name="sexo">
+		        <option {{selectedSexoM}} value="MAS">MAS</option>
+		        <option {{selectedSexoF}} value="FEM">FEM</option>
+		      </select>
+		    </div> 
+		     
+		    <div class="col-md-3 mb-2">
+		      <label for="dataNasc">Data Nascimento</label>
+		      <input type="date" class="form-control-pessoal" id="dataNasc" name="dataNasc" value="{{dataNasc}}" required>
+			</div>
+			
+			<div class="col-md-3 mb-2">
+		      <label for="dataCad">Data Cadastro</label>
+		      <input type="date" class="form-control-pessoal" id="dataCad" name="dataCad" value="{{dataCad}}" required>
+		    </div>  
+		    
+		    <div class="col-md-2 mb-2">
+		      <label for="fone1">Telefone 1</label>
+		      <input type="text" class="form-control-pessoal" id="fone1" name="fone1" value="{{fone1}}">
+		    </div>
+		    
+		    <div class="col-md-2 mb-2">
+		      <label for="fone2">Telefone 2</label>
+		      <input type="text" class="form-control-pessoal" id="fone2" name="fone2" value="{{fone2}}">
+		    </div>  
+  </div>
+      
+    <div class="form-row">
+	
+		<div class="col-md-3 mb-2">
+		      <label for="estadoCivil">Estado Civil</label>
+		       <select class="custom-select" id="estadoCivil" name="estadoCivil"  required>
+			        {{optionEstadoCivil}}
+			   </select>
+		    </div>
+		  	
+	  	<div class="col-md-3 mb-2">
+		      <label for="cartaoSus">Cartão SUS</label>
+		      <input type="text" class="form-control-pessoal" id="cartaoSus" name="cartaoSus" value="{{cartaoSus}}">
+		    </div>  
+		    
+		    <div class="col-md-6 mb-2">
+		      <label for="mae">Mãe</label>
+		      <input type="text" class="form-control-pessoal" id="mae" name="mae" value="{{mae}}">
+		    </div>
+		    		  	
+		  	    
+
+   </div>   
+      
+    <div class="form-row">
+
+		  	<div class="col-md-3 mb-2">
+		      <label for="procedencia">Procedência</label>
+		       <select class="custom-select" id="procedencia" name="procedencia" required >
+			        {{optionProcedencia}}
+			   </select>
+		    </div>	
+		    
+		     <div class="col-md-2 mb-2">
+		      <label for="tipo">Tipo</label>
+		         <select class="custom-select" id="tipo" name="tipo" required>
+			        <option {{selectedTipoA}} value="Ad">Ad</option>
+			        <option {{selectedTipoT}} value="Tm">Tm</option>
+			   </select>
+		    </div>  
+		    
+		  	<div class="col-md-2 mb-2">
+		      <label for="status">Status</label>
+		         <select class="custom-select" id="status" name="status" required>
+			        <option {{selectedStatusA}} value="Ativo">Ativo</option>
+			        <option {{selectedStatusI}} value="Inativo">Inativo</option>
+			   </select>
+
+		    </div>
+		    
+		
+		  	<div class="col-md-3 mb-2">
+		      <label for="motivoInativo">Motivo Inativo</label>
+		       <select class="custom-select" id="motivoInativo" name="motivoInativo" required >
+			        {{optionMotivoInativo}}
+			   </select>
+		    </div>
+		    
+		     <div class="col-md-2 mb-2">
+		      <label for="cid1">Cid 1</label>
+		       <select class="custom-select" id="cid1" name="cid1" required >
+			        {{optionCid10-1}}
+			   </select>
+		    </div>
+		      		    
+		    	
+	
+   </div>   
+   
+    <div class="form-row">
+    	  	<div class="col-md-2 mb-2">
+		      <label for="cid2">Cid 2</label>
+		       <select class="custom-select" id="cid2" name="cid2" required>
+			        {{optionCid10-2}}
+			   </select>
+
+		    </div>
+
+	         <div class="col-md-2 mb-2">
+			      <label for="substanciaPri" >Subst. Principal</label>
+			       <select class="custom-select" id="substanciaPri" name="substanciaPri" required title="Substância Principal Consumida">
+				        {{optionSubstanciaPri}}
+				   </select>
+
+			    </div>  
+			    
+   
+			    <div class="col-md-2 mb-2">
+			      <label for="substanciaSec">Subst. Secundária</label>
+			       <select class="custom-select" id="substanciaSec" name="substanciaSec" required title="Substância Secundária Consumida">
+				        {{optionSubstanciaSec}}
+				   </select>
+			    </div>
+			    
+			<div class="col-md-6 mb-2">
+		      <label for="obs">Observações</label>
+		      <input type="text" class="form-control-pessoal" id="obs" name="obs" value="{{obs}}" >
+		    </div>			    			    
+
+   </div>      
+</form>	
+
+
+							
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

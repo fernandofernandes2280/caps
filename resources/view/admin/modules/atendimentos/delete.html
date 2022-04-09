@@ -1,0 +1,78 @@
+
+
+<div class="row">
+	<div class="col-4">
+		<h5>Atendimento > {{title}}</h5>
+	</div>
+	<div class="col-sm-6">
+				{{statusMessage}}
+			</div>
+	<div class="col-2 text-right">
+		<a href="{{URL}}{{voltar}}">
+		<button type="button" class="btn btn-warning btn-round btn-sm " rel="tooltip" title="Voltar">
+			<i class="material-icons" style="font-size: 30px;">reply</i>
+		</button>
+</a>
+	</div>
+</div>
+<hr>
+<form method="post">
+	<div class="form-group">
+	Você deseja realmente excluir o Atendimento?
+	
+	</div>
+	
+	<table class="table table-sm">
+		<thead>
+			<tr>
+				<th>Data</th>
+				<th>Profissional</th>
+				<th>Procedimento</th>
+				<td>{{status_qtd}}</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>{{data}}</td>
+				<td>{{profissional}}</td>
+				<td> {{procedimento}}</td>
+				<td>{{status_qtd_val}}</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<div class="row">
+			<div class="col-12 mt-3 text-right">
+		<button type="submit" class="btn btn-danger btn-sm">Confirmar</button>
+	</div>
+		
+	</div>
+
+</form>
+
+								  
+								  
+						
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

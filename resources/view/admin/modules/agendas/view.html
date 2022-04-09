@@ -1,0 +1,91 @@
+								<div class="row">
+									<div class="col-sm-4 card-title">
+										<h5>Agendas > {{acao}}</h5>
+									</div>
+									<div class="col-sm-5">
+										{{statusMessage}}
+									</div>
+								    <div class="col-md-3 text-center" style="margin-top: 2%" >
+									  	<a href="{{URL}}/admin/agendas/{{idAgenda}}/addPaciente">
+									     		<button type="button" class="btn btn-success btn-round btn-sm " rel="tooltip" title="Adicionar Paciente">
+												<i class="material-icons" style="font-size: 30px;">person_add</i>
+												</button>
+											</a>
+										
+											<a href="{{URL}}/admin/agendas">
+												<button type="button" class="btn btn-warning btn-round btn-sm " rel="tooltip" title="Voltar">
+													<i class="material-icons" style="font-size: 30px;">reply</i>
+												</button>
+											</a>	
+									    </div>
+								</div>
+									
+										
+										  <div class="form-row">
+										    <div class="col-md-2 mb-2">
+										      <label for="data">Data da Agenda</label>
+										      <h6>{{data}}</h6>
+										    </div>
+										    
+										    <div class="col-md-5 mb-2">
+									       		<label>Profissional</label>
+									       		 <h6>{{profissional}}</h6>
+										    </div>
+										     <div class="col-md-3 mb-2">
+									       		<label>Função</label>
+									       		 <h6>{{funcao}}</h6>
+										    </div>
+										     
+									
+										    
+										    <div class="col-md-2 mb-2">
+										      <label for="status">Status</label>
+										      <h6>{{status}}</h6>
+										    </div>
+										    
+										
+										  </div>
+										
+									
+									<form  id="form_agendaItems" method="post" action="?page=1">
+									<input type="text" name="idAgenda" value="{{idAgenda}}" hidden/>
+									<div class="table-responsive">
+									  	<table class="table  table-hover mt-3">
+									  		<thead class=" text-light text-center titulo-tabela">
+									  			<tr >
+									  				<th>Prontuário</th>
+									  				<th>Paciente</th>
+									  				<th>Procedimento</th>
+									  				<th>P / F</th>
+									  				<th style="width:13%">Ações</th>
+									  			</tr>
+									  		</thead>
+									  		<tbody>
+									  	
+									  		{{itens}}
+									  	
+									  			
+									  		</tbody>
+									  	</table>
+									 </div>
+									 </form>
+									    <div class="row" >
+										  	<div class="col-12 pt-0 ">
+										  		<span>{{pagination}}</span>
+										  	</div>
+										   	<div class="col-12 text-right pt-3">
+										   		<span>Total de registros encontrados: {{totalAtendimentos}}</span>
+										  	</div>
+									  </div> 
+
+
+
+
+
+
+
+  
+  
+  
+  
+  

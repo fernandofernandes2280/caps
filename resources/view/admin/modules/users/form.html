@@ -1,0 +1,68 @@
+
+										<div class="row">
+											<div class="col-3 " >
+												<h5>{{title}}</h5>
+											</div>
+									 		<div class="col-5 " >
+												{{statusMessage}}
+											</div>	
+										
+									
+										<div class="col-4 text-right">
+											<a href="{{URL}}/admin/users">
+												<button type="button" class="btn btn-warning btn-round btn-sm " rel="tooltip" title="Voltar">
+													<i class="material-icons" style="font-size: 30px;">reply</i>
+												</button>
+											</a>
+										</div>
+									</div>
+
+									<form method="post">
+									
+									 <div class="form-row">
+									    <div class="col-md-5 mb-2">
+											<label>Nome</label>
+											<input type="text"name="nome" class="form-control-pessoal" value="{{nome}}" required>
+
+									    </div>
+    								  </div>
+									 <div class="form-row">
+									    <div class="col-md-5 mb-2">
+											<label>Email</label>
+											<input type="email" name="email" class="form-control-pessoal" value="{{email}}" required>
+									    </div>
+    								  </div>
+									 <div class="form-row">
+									    <div class="col-md-5 mb-2">
+											<label>CPF</label>
+											<input type="text" name="cpf" id="cpf" onKeyPress="mascara(this, formatarCpf)" class="form-control-pessoal" value="{{cpf}}" required>
+
+									    </div>
+    								  </div>
+									 <div class="form-row">
+									    <div class="col-md-5 mb-2">
+											<label>Tipo</label>
+											<select class="custom-select" id="tipo" name="tipo">
+										        <option {{selectedAdmin}} value="Admin">Admin</option>
+										        <option {{selectedOperador}} value="Operador">Operador</option>
+										        <option {{selectedVisitante}} value="Visitante">Visitante</option>
+										      </select>
+									    </div>
+    								  </div>
+									 <div class="form-row">
+									    <div class="col-md-5 mb-2">
+											<label>Senha</label>
+											<input type="text" name="senha"  class="form-control-pessoal" >
+
+									    </div>
+    								  </div>
+										<div class="form-group">
+											<button class="btn btn-facebook btn-sm btn-round" type="submit" rel="tooltip" title="Salvar">
+										     	<i class="material-icons" style="font-size: 30px;">save</i>
+										     </button>
+										</div>
+									
+									</form>
+
+
+							

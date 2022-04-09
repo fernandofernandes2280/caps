@@ -1,0 +1,66 @@
+
+								<div class="row">
+									<div class="col-6 card-title">
+										<h5>Atendimentos</h5>
+									</div>
+									<div class="col-6">
+										{{statusMessage}}
+									</div>
+								</div>
+								<main>
+									<div class="row ">
+										<div class="col-2">
+											<label style="margin-bottom:0px">Prontuário</label><br>
+											<label class="text-light"><h6>{{prontuario}}</h6></label>
+										</div>
+										<div class="col-6">
+											<label style="margin-bottom:0px">Nome</label><br>
+											<label class="text-light"><h6>{{nome}}</h6></label>
+										</div>
+										<div class="col-4 align-self-end text-right">
+			
+												<a href="{{URL}}/visitor/pacientes">
+													<button type="button" class="btn btn-warning btn-round btn-sm " rel="tooltip" title="Voltar">
+														<i class="material-icons" style="font-size: 30px;">reply</i>
+													</button>
+												</a>	
+										</div>
+									</div>
+
+									<div>
+
+									
+									</div>
+									 <div class="row">
+										<div class="col">
+											<h4>Listagem</h4>
+										</div>
+									</div>
+									  	<table class="table  table-hover">
+									  		<thead class=" text-light text-center titulo-tabela">
+									  			<tr >
+									  				<th>Pront.</th>
+									  				<th>Data</th>
+									  				<th>Profissional</th>
+									  				<th>Procedimento</th>
+									  				<th>Status</th>
+									  				<th>Idade</th>
+									  				
+									  			</tr>
+									  		</thead>
+									  		<tbody>
+									  			{{itens}}
+									  		</tbody>
+									  	</table>
+									    <div class="row" >
+										  	<div class="col-6 pt-0 ">
+										  		<span>{{pagination}}</span>
+										  	</div>
+										   	<div class="col-6 text-right pt-3">
+										   		<span>Total de registros encontrados: {{totalAtendimentos}}</span>
+										  	</div>
+									  </div> 
+
+							 
+
+

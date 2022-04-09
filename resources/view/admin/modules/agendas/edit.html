@@ -1,0 +1,78 @@
+								<div class="row">
+									<div class="col-sm-6 card-title">
+										<h5>Agendas > {{acao}}</h5>
+									</div>
+									<div class="col-sm-6">
+										{{statusMessage}}
+									</div>
+								</div>
+								<form  method="post" action="?page=1">
+									<div class="row ">
+
+										<div class="col-12 align-self-end text-right">
+																				    	 
+										      <button class="btn btn-facebook btn-sm btn-round" type="submit" rel="tooltip" title="Salvar">
+										     	<i class="material-icons" style="font-size: 30px;">save</i>
+										     </button>
+											
+												<a href="{{URL}}/admin/agendas">
+													<button type="button" class="btn btn-warning btn-round btn-sm " rel="tooltip" title="Voltar">
+														<i class="material-icons" style="font-size: 30px;">reply</i>
+													</button>
+												</a>	
+										</div>
+									</div>
+
+									<div>
+										
+										  <div class="form-row">
+										    <div class="col-md-3 mb-2">
+										      <label for="data">Data da Agenda</label>
+										      <input type="date" max="9999-12-31" class="form-control-pessoal" id="data" name="data" value="{{data}}" required  >
+										    </div>
+										    
+										    <div class="col-md-4 mb-2">
+										     
+										       		<label for="profissional">Profissional</label>
+												       <select class="custom-select" id="profissional" name="profissional" required>
+												       <option></option>
+													        {{optionProfissional}}
+													   </select>
+												
+										      
+										      
+										    </div>
+										     
+									
+										    
+										    <div class="col-md-4 mb-2">
+										      <label for="status">Status</label>
+												<select class="custom-select" id="status" name="status" >
+												 <option></option>
+												  {{optionStatus}}
+												</select>
+										    </div>
+										    <div class="col-md-1 text-center" style="margin-top: 2%" >
+										    	 
+										    
+										    </div>
+										  </div>
+										
+									
+									</div>
+								</form>
+								
+								Quantidade de pacientes: {{qtdPac}}	
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
