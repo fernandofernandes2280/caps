@@ -23,8 +23,8 @@ class Profissional extends Page{
 	
 	//Armazena quantidade total de pacientes listados
 	private static $qtdTotal ;
-	//esconde busca rápida de prontuário no navBar
-	private static $hidden = '';
+	//esconde busca rápida de prontuário no navBar (''->exibe  'hidden'->esconde)
+	private static $buscaRapidaPront = 'hidden';
 	
 	//Método responsavel por obter a rendereizacao dos pacientes para a página
 	private static function getProfissionaisItems($request, &$obPagination){
@@ -159,7 +159,7 @@ class Profissional extends Page{
 		]);
 		
 		//Retorna a página completa
-		return parent::getPanel('Profissionais > Siscaps', $content,'profissionais', self::$hidden);
+		return parent::getPanel('Profissionais > Siscaps', $content,'profissionais', self::$buscaRapidaPront);
 		
 	}
 	
