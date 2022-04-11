@@ -67,7 +67,7 @@ class Relatorio  extends Page{
 			'<table class="table table-striped">
 			<thead class="bg-dark">
 			<tr>
-			<th style="color: #fff">'.EntityProfissional::getProfissionalById($ob->idProfissional)->nome.'</th>
+			<th style="color: #fff">'.EntityProfissional::getProfissionalById($ob->idProfissional)->nome.' ('.EntityProfissional::getProfissionalById($ob->idProfissional)->funcao.')'. '</th>
 			<th style="color: #fff">qtd</th>
 			</tr>
 			</thead>
