@@ -46,5 +46,8 @@ include __DIR__.'/admin/relatorios.php';
 //Inclui as rotas de Agenda
 include __DIR__.'/admin/agendas.php';
 
+//Inclui as rotas de profissionais
+include __DIR__.'/admin/profissionais.php';
+
 
 

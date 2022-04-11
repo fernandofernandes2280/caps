@@ -6,13 +6,64 @@ use \WilliamCosta\DatabaseManager\Database;
 
 class Profissional {
 	
+    //endereço (rua/avenida) do funcionário
+    public $endereco;
+    
+    //bairro do funcionário
+    public $bairro;
+    
+    //cidade do funcionário
+    public $cidade;
+    
+    //cep do funcionário
+    public $cep;
+    
+    //unidade federal do funcionário
+    public $uf;
+    
+    //telefone do funcionário
+    public $fone;
+    
+    //data de nascimento do funcionário
+    public $dataNasc;
+    
+    //data de cadastro do funcionário
+    public $dataCad;
+    
+    //função do funcionário
+    public $funcao;
+    
+    //cpf do do funcionário
+    public $cpf;
+    
+    //cartão do sus do funcionário
+    public $cartaoSus;
+    
+    //cbo do funcionário
+    public $cbo;
 		
+    //status 1-ativo 0-inativo
+    public $status;
+    
 	//Método responsavel por cadastrar um bairro no banco de dados
 	public function cadastrar(){
 		
 		//Insere paciente no banco de dados
 		$this->id = (new Database('profissionais'))->insert([
 				'nome'=>$this->nome,
+    		    'endereco'=>$this->endereco,
+    		    'bairro'=>$this->bairro,
+    		    'cidade'=>$this->cidade,
+    		    'uf'=>$this->uf,
+    		    'cep'=>$this->cep,
+    		    'fone'=>$this->fone,
+    		    'dataNasc'=>$this->dataNasc,
+    		    'dataCad'=>$this->dataCad,
+    		    'status'=>$this->status,
+    		    'cartaoSus'=>$this->cartaoSus,
+		        'funcao'=>$this->funcao,
+		        'cpf'=>$this->cpf,
+		        'cbo'=>$this->cbo,
 		]);
 		//Sucesso
 		return true;

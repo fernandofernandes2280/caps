@@ -137,7 +137,12 @@ class Page{
 					'label' => 'Substâncias',
 					'idBotao' => 'btnSubstancias',
 					'link' => URL.'/admin/substancias',
-			]
+			],
+    	    'profissionais' =>[
+    	        'label' => 'Profissionais',
+    	        'idBotao' => 'btnProfissionais',
+    	        'link' => URL.'/admin/profissionais',
+    	    ]
 			
 	];
 	//método que renderiza os itens do dropdown Manutenção
