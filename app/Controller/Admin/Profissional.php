@@ -44,7 +44,7 @@ class Profissional extends Page{
 		//Filtro Status
 		$filtroStatus = $queryParams['status'] ?? '';
 		//Filtro recebe apenas os valores possíveis(s ou n) caso contrário recebe vazio.
-		$filtroStatus = in_array($filtroStatus, ['ATIVO','INATIVO']) ? $filtroStatus : '';
+		$filtroStatus = in_array($filtroStatus, ['1','0']) ? $filtroStatus : '';
 		
 		//Condições SQL
 		$condicoes = [
@@ -132,8 +132,8 @@ class Profissional extends Page{
 		}
 		
 		if (isset($queryParams['status'])) {
-			if($queryParams['status'] == 'ATIVO')$selectedAtivo = 'selected';
-			else if($queryParams['status'] == 'INATIVO') $selectedInativo = 'selected';
+			if($queryParams['status'] == '1')$selectedAtivo = 'selected';
+			else if($queryParams['status'] == '0') $selectedInativo = 'selected';
 			else $selectedAtIn = 'selected';
 		}
 		
