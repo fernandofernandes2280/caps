@@ -72,10 +72,9 @@ class Home extends Page{
 	//	var_dump($U_Dia);exit;
 		$content = View::render('pages/home',[
 				'grafico1'=>View::render('pages/graficos/graficos',[
-				'label'=> self::getProducaoPorAtendimento($P_Dia, $U_Dia),
-				'title' => 'Atendimentos do mês de '.$mes .'/'.date('Y'),
-						
-				]), 
+    				'label'=> self::getProducaoPorAtendimento($P_Dia, $U_Dia),
+    				'title' => 'Atendimentos do mês de '.$mes .'/'.date('Y'),
+				    ]), 
 				'totalPacientes' => $totalPacientes,
 				'totalAd' => $totalPacientesAd,
 				'totalTm' => $totalPacientesTm,

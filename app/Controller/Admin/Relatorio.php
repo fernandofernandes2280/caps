@@ -19,8 +19,12 @@ class Relatorio  extends Page{
 	
 	//Método responsável por retornar relatorio por atendimento
 	public static function getRelPorAtendimento($request,$dataInicio,$dataFim){
-
+	    
+        //recebe dados os atendimentos
 		$resultado = '';
+		//recebe dados do gráfico
+		$resultadoGrafico = '';
+		
 		$total = 0;
 		$where = 'status = "P" and data BETWEEN "'.$dataInicio.'" and "'.$dataFim.'" GROUP BY P.nome' ;
 		$table = 'atendimentos as A INNER JOIN procedimentos as P ON P.id = A.idProcedimento';
@@ -37,6 +41,9 @@ class Relatorio  extends Page{
 						  </tr>'; 
 			$total += $obAtendimento->total; 
 			
+			//dados para geração do gráfico
+			$resultadoGrafico .=  "['$obAtendimento->atendimento', $obAtendimento->total], "  ;
+			
 		}
 		
 		$resultado .= '<tr>
@@ -44,7 +51,14 @@ class Relatorio  extends Page{
 								<td>'.$total.'</td>
 						  </tr>';
 	
-		return $resultado;
+		
+		
+		$dados['resultado'] = $resultado;
+		$dados['grafico'] = $resultadoGrafico;
+		
+		return $dados;
+		
+		
 		
 	}
 	
@@ -123,8 +137,12 @@ class Relatorio  extends Page{
 		
 		$content = View::render('admin/modules/relatorios/index',[
 				'title' => 'Relatórios de Atendimentos do Período: '.date('d/m/Y', strtotime($dataInicio)) .' à '.date('d/m/Y', strtotime($dataFim)),
-				'procedimentos' => self::getRelPorAtendimento($request,$dataInicio,$dataFim),
-				'profissional' => self::getRelPorProfissional($request, $dataInicio, $dataFim)
+				'procedimentos' => self::getRelPorAtendimento($request,$dataInicio,$dataFim)['resultado'],
+				'profissional' => self::getRelPorProfissional($request, $dataInicio, $dataFim),
+                'graficoProcedimentos'=>View::render('pages/graficos/graficos',[
+                    'label'=> self::getRelPorAtendimento($request,$dataInicio,$dataFim)['grafico'],
+                    'title' => '<h5>Gráfico por atendimentos</h5>',
+                ]), 
 				
 				
 		]);
