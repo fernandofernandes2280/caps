@@ -117,10 +117,10 @@ $(document).ready(function() {
 	}
 	
 /////Máscaras para Telefone //////////////////	
+
 	$("#fone1").blur(function() {
 		var fone = $(this).val();
 		
-		/* Máscaras ER */
 		function mascara(o,f){
 		    v_obj=o
 		    v_fun=f
@@ -131,10 +131,11 @@ $(document).ready(function() {
 		}
 		function mtel(v){
 		    v=v.replace(/\D/g,"");             //Remove tudo o que não é dígito
-		    v=v.replace(/^(\d{2})(\d)/g,"(96) $1$2"); //Coloca (96) no início do número
+		//    v=v.replace(/^(\d{2})(\d)/g,"(96) $1$2"); //Coloca (96) no início do número
 		    v=v.replace(/(\d)(\d{4})$/,"$1-$2");    //Coloca hífen entre o quarto e o quinto dígitos
 		    return v;
 		}
+		 		
 		$(this).val(mtel(fone));
 	
 	 });
@@ -142,7 +143,7 @@ $(document).ready(function() {
 	$("#fone2").blur(function() {
 		var fone = $(this).val();
 		
-		/* Máscaras ER */
+	
 		function mascara(o,f){
 		    v_obj=o
 		    v_fun=f
@@ -153,7 +154,7 @@ $(document).ready(function() {
 		}
 		function mtel(v){
 		    v=v.replace(/\D/g,"");             //Remove tudo o que não é dígito
-		    v=v.replace(/^(\d{2})(\d)/g,"(96) $1$2"); //Coloca (96) no início do número
+		//    v=v.replace(/^(\d{2})(\d)/g,"(96) $1$2"); //Coloca (96) no início do número
 		    v=v.replace(/(\d)(\d{4})$/,"$1-$2");    //Coloca hífen entre o quarto e o quinto dígitos
 		    return v;
 		}
