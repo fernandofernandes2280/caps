@@ -92,7 +92,7 @@ class Paciente extends Generica{
 	//Método responsavel por cadastrar um paciente no banco de dados
 	public function cadastrar(){
 		//define a data
-		$this->dataCad = date('Y-m-d H:i:s');
+	//	$this->dataCad = date('Y-m-d H:i:s');
 		//Insere paciente no banco de dados
 		$this->id = (new Database('pacientes'))->insert([
 				'codPronto' => $this->codPronto,
@@ -144,7 +144,7 @@ class Paciente extends Generica{
 				'fone1'=>$this->fone1,
 				'fone2'=>$this->fone2,
 				'dataNasc'=>$this->dataNasc,
-				'dataCad'=>$this->dataCad,
+		        'dataCad'=>$this->dataCad,
 				'naturalidade'=>$this->naturalidade,
 				'mae'=>$this->mae,
 				'escolaridade'=>$this->escolaridade,

@@ -291,7 +291,7 @@ class Paciente extends Page{
 		
 	//Metodo responsávelpor retornar o formulário de cadastro de um novo Paciente
 	public static function getNewPaciente($request){
-		$dataAtual = date('Y-m-d');
+		//$dataAtual = date('Y-m-d');
 		//Conteúdo do Formulário
 		$content = View::render('admin/modules/pacientes/form',[
 				'title' => 'Novo',
@@ -304,7 +304,7 @@ class Paciente extends Page{
 				'cidade' => 'Santana',
 				'uf' => 'Ap',
 				'dataNasc' => '',
-				'dataCad' => $dataAtual,
+				'dataCad' =>'',
 				'naturalidade' => '',
 				'fone1' => '',
 				'fone2' => '',
@@ -335,7 +335,7 @@ class Paciente extends Page{
 	public static function setNewPaciente($request){
 		//Post vars
 		$postVars = $request->getPostVars();
-
+	
 		//Nova instância de paciente
 		$obPaciente = new EntityPaciente;
 		
@@ -347,7 +347,10 @@ class Paciente extends Page{
 		$obPaciente->cidade = Funcoes::convertePriMaiuscula($postVars['cidade']);
 		$obPaciente->uf = strtoupper($postVars['uf']);
 		$obPaciente->dataNasc = implode("-",array_reverse(explode("/",$postVars['dataNasc']))); 
-		$obPaciente->dataCad = $postVars['dataCad'];
+		//recebe a data do formulário e converte para objeto data
+		$dataCad = date_create_from_format('Y-m-d', $postVars['dataCad']);
+		//formata a data vinda do formulário com a hora atual
+		$obPaciente->dataCad = $dataCad->format('Y-m-d H:i:s');
 		$obPaciente->sexo = $postVars['sexo'];
 		$obPaciente->naturalidade = Funcoes::convertePriMaiuscula($postVars['naturalidade']);
 		$obPaciente->escolaridade = $postVars['escolaridade'] ?? null;
@@ -472,7 +475,10 @@ class Paciente extends Page{
 		$obPaciente->cidade = $postVars['cidade'] ?? $obPaciente->cidade;
 		$obPaciente->uf = $postVars['uf'] ?? $obPaciente->uf;
 		$obPaciente->dataNasc = implode("-",array_reverse(explode("/",$postVars['dataNasc']))); 
-		$obPaciente->dataCad = implode("-",array_reverse(explode("/",$postVars['dataCad'])));
+        //recebe a data do formulário e converte para objeto data
+		$dataCad = date_create_from_format('Y-m-d', $postVars['dataCad']);
+		//formata a data vinda do formulário com a hora atual
+		$obPaciente->dataCad = $dataCad->format('Y-m-d H:i:s');
 		$obPaciente->sexo = $postVars['sexo'] ?? $obPaciente->sexo;
 		$obPaciente->naturalidade = $postVars['naturalidade'] ?? $obPaciente->naturalidade;
 		$obPaciente->escolaridade = $postVars['escolaridade'] ?? $obPaciente->escolaridade;
