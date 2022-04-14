@@ -1,8 +1,7 @@
-
 <form  method="post" action="?page=1">
 	<div class="row">
 			<div class="col-4 " >
-			<h5>Pacientes > {{title}} > Pront.: {{prontuario}}</h5>
+			<h5>Profissionais > {{title}} </h5>
 			<input type="text" value="{{prontuario}}" hidden name="codPronto"/>
 		</div>
  		<div class="col-3 " >
@@ -11,17 +10,7 @@
 	
 
 	<div class="col-5 text-right">
-		 <a href="{{URL}}/admin/pacientes/{{prontuario}}/lme" rel="tooltip" title="Laudo+Termo+Escala">
-               <i class="material-icons" style="font-size: 30px;">medication</i>
-		</a>
-	
-		 <a href="{{URL}}/admin/pacientes/{{prontuario}}/capa/imprimir" target="_blank" rel="tooltip" title="Imprimir Capa">
-               <i class="material-icons" style="font-size: 30px;">print</i>
-		</a>
-		 <a href="{{URL}}/admin/atendimentos/{{prontuario}}/atendimento" rel="tooltip" title="Atendimentos" {{hidden}}>
-                <i class="material-icons" style="font-size: 30px;">assignment</i>
-			</a>
-	  <button class="btn btn-facebook btn-sm btn-round" type="submit" rel="tooltip" title="Salvar">
+	 <button class="btn btn-facebook btn-sm btn-round" type="submit" rel="tooltip" title="Salvar">
      	<i class="material-icons" style="font-size: 30px;">save</i>
      </button>
 		 
@@ -31,19 +20,16 @@
 			</button>
 		</a>
 		
-		<a href="{{URL}}/admin/pacientes">
+		<a href="{{URL}}/admin/profissionais">
 			<button type="button" class="btn btn-warning btn-round btn-sm " rel="tooltip" title="Voltar">
 				<i class="material-icons" style="font-size: 30px;">reply</i>
 			</button>
 		</a>
-		
-		
-		
-		
 	</div>
 </div>
-
+<br>
   <div class="form-row">
+   
     <div class="col-md-5 mb-2">
       <label for="nome">Nome</label>
       <input type="text" class="form-control-pessoal" id="nome" name="nome" value="{{nome}}" required  >
@@ -63,169 +49,92 @@
   </div>
   
   <div class="form-row">
-  	<div class="col-md-3">
-		      <label for="bairro">Bairro</label>
-		       <select class="custom-select" id="bairro" name="bairro" required>
-			        {{optionBairros}}
-			   </select>
-    </div>
-    
 
-  	<div class="col-md-2">
-      <label for="cidade">Cidade</label>
-      <input type="text" class="form-control-pessoal" id="cidade" name="cidade" value="{{cidade}}" >
-    </div>  
+	  	<div class="col-md-4">
+	      <label for="bairro">Bairro</label>
+	       <select class="custom-select" id="bairro" name="bairro" required>
+		        {{optionBairros}}
+		   </select>
+	    </div>
+	  	<div class="col-md-2">
+	      <label for="cidade">Cidade</label>
+	      <input type="text" class="form-control-pessoal" id="cidade" name="cidade" value="{{cidade}}" >
+	    </div>  
+
       	<div class="col-md-1">
-      <label for="uf">UF</label>
-		<input type="text" class="form-control-pessoal" id="uf" name="uf" value="{{uf}}" >    </div>  
-    
-   	<div class="col-md-3 mb-2">
-		      <label for="naturalidade">Naturalidade</label>
-		      <input type="text" class="form-control-pessoal" id="naturalidade" name="naturalidade" value="{{naturalidade}}">
-		    </div>  
+	      	<label for="uf">UF</label>
+			<input type="text" class="form-control-pessoal" id="uf" name="uf" value="{{uf}}" >    
+		</div>  
 
 		<div class="col-md-3 mb-2">
-		      <label for="escolaridade">Escolaridade</label>
-		       <select class="custom-select" id="escolaridade" name="escolaridade" required>
-			        {{optionEscolaridade}}
-			   </select>
-		    </div>			
-		  
-		    
-		   		
-    
-     
+	      <label for="cartaoSus">Cartão SUS</label>
+	      <input type="text" class="form-control-pessoal" id="cartaoSus" name="cartaoSus" value="{{cartaoSus}}">
+		</div>
+		
+		<div class="col-md-2 mb-2">
+	      <label for="cbo">CBO</label>
+	      <input type="text" class="form-control-pessoal" id="cbo" name="cbo" value="{{cbo}}">
+		</div>
+		
    </div>   
    
    <div class="form-row">
-   		 <div class="col-md-2 mb-2">
-		      <label for="sexo">Sexo</label><br>
-		      <select class="custom-select" id="sexo" name="sexo">
-		        <option {{selectedSexoM}} value="MAS">MAS</option>
-		        <option {{selectedSexoF}} value="FEM">FEM</option>
-		      </select>
-		    </div> 
-		     
+
+		    <div class="col-md-4 mb-2">
+		      <label for="funcao">Função</label>
+		      <input type="text" class="form-control-pessoal" id="funcao" name="funcao" value="{{funcao}}" required>
+			</div>
+
 		    <div class="col-md-3 mb-2">
 		      <label for="dataNasc">Data Nascimento</label>
 		      <input type="date" class="form-control-pessoal" id="dataNasc" name="dataNasc" value="{{dataNasc}}" required>
 			</div>
-			
-			<div class="col-md-3 mb-2">
-		      <label for="dataCad">Data Cadastro</label>
-		      <input type="date" class="form-control-pessoal" id="dataCad" name="dataCad" value="{{dataCad}}" required>
-		    </div>  
-		    
-		    <div class="col-md-2 mb-2">
-		      <label for="fone1">Telefone 1</label>
-		      <input type="text" class="form-control-pessoal" id="fone1" name="fone1" value="{{fone1}}">
+
+		    <div class="col-md-3 mb-2">
+				<label>CPF</label>
+				<input type="text" name="cpf" id="cpf" onKeyPress="mascara(this, formatarCpf)" class="form-control-pessoal" value="{{cpf}}" required>
+
 		    </div>
 		    
 		    <div class="col-md-2 mb-2">
-		      <label for="fone2">Telefone 2</label>
-		      <input type="text" class="form-control-pessoal" id="fone2" name="fone2" value="{{fone2}}">
-		    </div>  
-  </div>
-      
-    <div class="form-row">
-	
-		<div class="col-md-3 mb-2">
-		      <label for="estadoCivil">Estado Civil</label>
-		       <select class="custom-select" id="estadoCivil" name="estadoCivil"  required>
-			        {{optionEstadoCivil}}
-			   </select>
+		      <label for="fone1">Telefone</label>
+		      <input type="text" class="form-control-pessoal" id="fone" name="fone" value="{{fone}}">
 		    </div>
-		  	
-	  	<div class="col-md-3 mb-2">
-		      <label for="cartaoSus">Cartão SUS</label>
-		      <input type="text" class="form-control-pessoal" id="cartaoSus" name="cartaoSus" value="{{cartaoSus}}">
-		    </div>  
 		    
-		    <div class="col-md-6 mb-2">
-		      <label for="mae">Mãe</label>
-		      <input type="text" class="form-control-pessoal" id="mae" name="mae" value="{{mae}}">
-		    </div>
-		    		  	
-		  	    
-
-   </div>   
-      
-    <div class="form-row">
-
-		  	<div class="col-md-3 mb-2">
-		      <label for="procedencia">Procedência</label>
-		       <select class="custom-select" id="procedencia" name="procedencia" required >
-			        {{optionProcedencia}}
-			   </select>
-		    </div>	
-		    
-		     <div class="col-md-2 mb-2">
-		      <label for="tipo">Tipo</label>
-		         <select class="custom-select" id="tipo" name="tipo" required>
-			        <option {{selectedTipoA}} value="Ad">Ad</option>
-			        <option {{selectedTipoT}} value="Tm">Tm</option>
-			   </select>
-		    </div>  
-		    
-		  	<div class="col-md-2 mb-2">
+	</div>	  	
+		<div class="form-row">
+		
+		<div class="col-md-2 mb-2">
 		      <label for="status">Status</label>
 		         <select class="custom-select" id="status" name="status" required>
-			        <option {{selectedStatusA}} value="Ativo">Ativo</option>
-			        <option {{selectedStatusI}} value="Inativo">Inativo</option>
-			   </select>
-
-		    </div>
-		    
-		
-		  	<div class="col-md-3 mb-2">
-		      <label for="motivoInativo">Motivo Inativo</label>
-		       <select class="custom-select" id="motivoInativo" name="motivoInativo" required >
-			        {{optionMotivoInativo}}
+			        <option {{selectedStatusA}} value=1>Ativo</option>
+			        <option {{selectedStatusI}} value=0>Inativo</option>
 			   </select>
 		    </div>
 		    
-		     <div class="col-md-2 mb-2">
-		      <label for="cid1">Cid 1</label>
-		       <select class="custom-select" id="cid1" name="cid1" required >
-			        {{optionCid10-1}}
-			   </select>
-		    </div>
-		      		    
-		    	
-	
-   </div>   
-   
-    <div class="form-row">
-    	  	<div class="col-md-2 mb-2">
-		      <label for="cid2">Cid 2</label>
-		       <select class="custom-select" id="cid2" name="cid2" required>
-			        {{optionCid10-2}}
-			   </select>
+		  <div class="col-md-5 mb-2">
+			<label>Email</label>
+			<input type="email" name="email" class="form-control-pessoal" value="{{email}}" required>
+		 </div>
 
-		    </div>
+	    <div class="col-md-3 mb-2">
+			<label>Senha de Acesso</label>
+			<input type="text" name="senha"  class="form-control-pessoal" >
+	    </div>
+		 
+		<div class="col-md-2 mb-2">
+			<label>Tipo de Acesso</label>
+			<select class="custom-select" id="tipo" name="tipo">
+		        <option {{selectedAdmin}} value="Admin">Admin</option>
+		        <option {{selectedOperador}} value="Operador">Operador</option>
+		        <option {{selectedVisitante}} value="Visitante">Visitante</option>
+		      </select>
+	    </div>
+		 
+		</div>
 
-	         <div class="col-md-2 mb-2">
-			      <label for="substanciaPri" >Subst. Principal</label>
-			       <select class="custom-select" id="substanciaPri" name="substanciaPri" required title="Substância Principal Consumida">
-				        {{optionSubstanciaPri}}
-				   </select>
+  
 
-			    </div>  
-			    
-   
-			    <div class="col-md-2 mb-2">
-			      <label for="substanciaSec">Subst. Secundária</label>
-			       <select class="custom-select" id="substanciaSec" name="substanciaSec" required title="Substância Secundária Consumida">
-				        {{optionSubstanciaSec}}
-				   </select>
-			    </div>
-			    
-			<div class="col-md-6 mb-2">
-		      <label for="obs">Observações</label>
-		      <input type="text" class="form-control-pessoal" id="obs" name="obs" value="{{obs}}" >
-		    </div>			    			    
-
-   </div>      
 </form>	
 
 

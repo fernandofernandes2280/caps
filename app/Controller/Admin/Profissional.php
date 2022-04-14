@@ -110,7 +110,6 @@ class Profissional extends Page{
 		
 	}
 	
-
 	
 	//Método responsavel por renderizar a view de Listagem de Pacientes
 	public static function getProfissionais($request){
@@ -164,51 +163,119 @@ class Profissional extends Page{
 	}
 	
 	
+	//Metodo responsávelpor retornar o formulário de Edição de um Profissional
+	public static function getEditProfissional($request,$id){
+	    
+	    //obtém o Profissional do banco de dados
+	    $obProfissional = EntityProfissional::getProfissionalById($id);
+	    
+	    //Valida a instancia
+	    if(!$obProfissional instanceof EntityProfissional){
+	        $request->getRouter()->redirect('/admin/profissionais');
+	    }
+	    
+	    $obProfissional->tipo == 'Admin' ? $selectedAdmin = 'selected' : $selectedAdmin = '' ;
+	    $obProfissional->tipo == 'Visitante' ? $selectedVisitante = 'selected' : $selectedVisitante = '' ;
+	    $obProfissional->tipo == 'Operador' ? $selectedOperador = 'selected' : $selectedOperador = '' ;
+	    
+	    
+	    //Conteúdo do Formulário
+	    $content = View::render('admin/modules/profissionais/form',[
+	       
+	        'id' => $obProfissional->id,
+	        'title' => 'Editar',
+	        'nome' => $obProfissional->nome,
+	        'cep' => $obProfissional->cep,
+	        'endereco' => $obProfissional->endereco,
+	        'cartaoSus' => $obProfissional->cartaoSus,
+	        'statusMessage' => self::getStatus($request),
+	        'fone' => $obProfissional->fone,
+	        'bairro' => $obProfissional->bairro,
+	        'cidade' => $obProfissional->cidade,
+	        'uf' => $obProfissional->uf,
+	        'cbo' => $obProfissional->cbo,
+	        'cpf' => Funcoes::mask($obProfissional->cpf, '###.###.###-##') ,
+	        'funcao' => $obProfissional->funcao,
+	        'dataNasc' => date('Y-m-d', strtotime($obProfissional->dataNasc)),
+	        'selectedStatusA' => $obProfissional->status == 1 ? 'selected' : '',
+	        'selectedStatusI' => $obProfissional->status == 0 ? 'selected' : '',
+	        'optionBairros' => EntityBairro::getSelectBairros($obProfissional->bairro),
+	        'email' => $obProfissional->email,
+	        'senha' => $obProfissional->senha,
+	        'selectedAdmin'=> $selectedAdmin,
+	        'selectedVisitante'=> $selectedVisitante,
+	        'selectedOperador'=> $selectedOperador,
+	        
+	    ]);
+	    
+	    //Retorna a página completa
+	    return parent::getPanel('Editar Profissional > SISCAPS', $content,'profissionais', self::$buscaRapidaPront);
+	    
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	//Método responsavel por renderizar a Capa de Prontuário do Paciente
 	public static function getCapaProntuario($request,$codPronto){
-	
-		//esconde busca rápida de prontuário no navBar
-		$hidden = '';
-		
-		
-		//obtém o Paciente do banco de dados
-		$obPaciente = EntityPaciente::getPacienteByCodPronto($codPronto);
-		
-		//Valida a instancia
-		if(!$obPaciente instanceof EntityPaciente){
-			$request->getRouter()->redirect('/admin/pacientes');
-		}
-		
-		//Conteúdo da Home
-		$content = View::render('admin/modules/pacientes/capa',[
-			
-				'codPronto' => $obPaciente->codPronto,
-				'tipo' => $obPaciente->tipo,
-				'nome' => $obPaciente->nome,
-				'endereco' => $obPaciente->endereco.' - '.EntityBairro::getBairroById($obPaciente->bairro)->nome.' - '.$obPaciente->cidade.' / '.$obPaciente->uf,
-				'dataNasc' => date('d/m/Y', strtotime($obPaciente->dataNasc)),
-				'dataCad' => date('d/m/Y', strtotime($obPaciente->dataCad)),
-				'estadoCivil' =>EntityEstadoCivil::getEstadoCivilById($obPaciente->estadoCivil)->nome,
-				'escolaridade' =>EntityEscolaridade::getEscolaridadeById($obPaciente->escolaridade)->nome,
-				'sexo' => $obPaciente->sexo,
-				'naturalidade' => $obPaciente->naturalidade,
-				'mae' => $obPaciente->mae,
-				'cartaoSus' =>Funcoes::mask($obPaciente->cartaoSus,'# | # | # | # | # | # | # | # | # | # | # | # | # | # | #') ,
-				'fone1' =>$obPaciente->fone1,
-				'fone2' =>$obPaciente->fone2,
-				'procedencia' =>EntityProcedencia::getProcedenciaById($obPaciente->procedencia)->nome,
-				'cid' =>Entitycid10::getCid10ById($obPaciente->cid1)->nome
-				
-				
-				
-		]);
-		
-		//Retorna a página completa
-		//return parent::getPanel('Pacientes > Siscaps', $content,'pacientes', self::$hidden);
-		return $content;
-		
+	    
+	    //esconde busca rápida de prontuário no navBar
+	    $hidden = '';
+	    
+	    
+	    //obtém o Paciente do banco de dados
+	    $obPaciente = EntityPaciente::getPacienteByCodPronto($codPronto);
+	    
+	    //Valida a instancia
+	    if(!$obPaciente instanceof EntityPaciente){
+	        $request->getRouter()->redirect('/admin/pacientes');
+	    }
+	    
+	    //Conteúdo da Home
+	    $content = View::render('admin/modules/pacientes/capa',[
+	        
+	        'codPronto' => $obPaciente->codPronto,
+	        'tipo' => $obPaciente->tipo,
+	        'nome' => $obPaciente->nome,
+	        'endereco' => $obPaciente->endereco.' - '.EntityBairro::getBairroById($obPaciente->bairro)->nome.' - '.$obPaciente->cidade.' / '.$obPaciente->uf,
+	        'dataNasc' => date('d/m/Y', strtotime($obPaciente->dataNasc)),
+	        'dataCad' => date('d/m/Y', strtotime($obPaciente->dataCad)),
+	        'estadoCivil' =>EntityEstadoCivil::getEstadoCivilById($obPaciente->estadoCivil)->nome,
+	        'escolaridade' =>EntityEscolaridade::getEscolaridadeById($obPaciente->escolaridade)->nome,
+	        'sexo' => $obPaciente->sexo,
+	        'naturalidade' => $obPaciente->naturalidade,
+	        'mae' => $obPaciente->mae,
+	        'cartaoSus' =>Funcoes::mask($obPaciente->cartaoSus,'# | # | # | # | # | # | # | # | # | # | # | # | # | # | #') ,
+	        'fone1' =>$obPaciente->fone1,
+	        'fone2' =>$obPaciente->fone2,
+	        'procedencia' =>EntityProcedencia::getProcedenciaById($obPaciente->procedencia)->nome,
+	        'cid' =>Entitycid10::getCid10ById($obPaciente->cid1)->nome
+	        
+	        
+	        
+	    ]);
+	    
+	    //Retorna a página completa
+	    //return parent::getPanel('Pacientes > Siscaps', $content,'pacientes', self::$hidden);
+	    return $content;
+	    
 	}
+	
+	
 	
 	//Método responsavel por gerar o PDF da Capa de Prontuário do Paciente
 	public static function getImprimirCapaProntuario($request, $codPronto){
@@ -373,64 +440,7 @@ class Profissional extends Page{
 	}
 	
 	
-	
-	//Metodo responsávelpor retornar o formulário de Edição de um Paciente
-	public static function getEditPaciente($request,$codPronto){
 
-		//obtém o Paciente do banco de dados
-		$obPaciente = EntityPaciente::getPacienteByCodPronto($codPronto);
-		
-		//Valida a instancia
-		if(!$obPaciente instanceof EntityPaciente){
-			$request->getRouter()->redirect('/admin/pacientes');
-		}
-
-		//Conteúdo do Formulário
-		$content = View::render('admin/modules/pacientes/form',[
-		        'prontuario'=> str_pad($obPaciente->codPronto,4,"0",STR_PAD_LEFT),
-				'id' => $obPaciente->id,
-				'hidden' =>'', //exibe botão atendimentos
-				'title' => 'Editar',
-				'nome' => $obPaciente->nome,
-				'cep' => $obPaciente->cep,
-				'endereco' => $obPaciente->endereco,
-				'cartaoSus' => $obPaciente->cartaoSus,
-				'statusMessage' => self::getStatus($request),
-				'naturalidade' => $obPaciente->naturalidade,
-				'fone1' => $obPaciente->fone1,
-				'fone2' => $obPaciente->fone2,
-				'mae' => $obPaciente->mae,
-				'obs' => $obPaciente->obs,
-				'bairro' => $obPaciente->bairro,
-				'cidade' => $obPaciente->cidade,
-				'uf' => $obPaciente->uf,
-				'dataNasc' => date('Y-m-d', strtotime($obPaciente->dataNasc)),
-				'dataCad' => date('Y-m-d', strtotime($obPaciente->dataCad)),
-				'selectedSexoM' => $obPaciente->sexo === 'MAS' ? 'selected' : '',
-				'selectedSexoF' => $obPaciente->sexo === 'FEM' ? 'selected' : '',
-				'optionEscolaridade' => EntityEscolaridade::getSelectEscolaridade($obPaciente->escolaridade),
-				'optionEstadoCivil' => EntityEstadoCivil::getSelectEstadoCivil($obPaciente->estadoCivil),
-				'optionProcedencia' => EntityProcedencia::getSelectProcedencia($obPaciente->procedencia),
-				'selectedStatusA' => $obPaciente->status === 'Ativo' ? 'selected' : '',
-				'selectedStatusI' => $obPaciente->status === 'Inativo' ? 'selected' : '',
-				'optionMotivoInativo' => EntityMotivoInativo::getSelectMotivoInativo($obPaciente->motivoInativo),
-				'selectedTipoA' => $obPaciente->tipo === 'Ad' ? 'selected' : '',
-				'selectedTipoT' => $obPaciente->tipo === 'Tm' ? 'selected' : '',
-				'optionCid10-1' => Entitycid10::getSelectCid10($obPaciente->cid1),
-				'optionCid10-2' => Entitycid10::getSelectCid10($obPaciente->cid2),
-				'optionSubstanciaPri' => EntitySubstancia::getSelectSubstancia($obPaciente->substanciaPri),
-				'optionSubstanciaSec' => EntitySubstancia::getSelectSubstancia($obPaciente->substanciaSec),
-				'optionBairros' => EntityBairro::getSelectBairros($obPaciente->bairro),
-				
-
-				
-				
-		]);
-		
-		//Retorna a página completa
-		return parent::getPanel('Editar Paciente > WDEV', $content,'pacientes', self::$hidden);
-		
-	}
 	
 	//Metodo responsável por gravar a atualização de um Paciente
 	public static function setEditPaciente($request,$codPronto){

@@ -4,7 +4,7 @@ use \App\Http\Response;
 use \App\Controller\Admin;
 use \App\File;
 
-//ROTA DE LISTAGEM DE PACIENTE
+//ROTA DE LISTAGEM DE PROFISSIONAL
 $obRouter->get('/admin/profissionais',[
 		'middlewares' => [
 				'require-admin-login'
@@ -16,6 +16,25 @@ $obRouter->get('/admin/profissionais',[
 		    
 		}
 		]);
+
+
+//ROTA DE VIEW DE PROFISSIONAL
+$obRouter->get('/admin/profissionais/{id}/edit',[
+    'middlewares' => [
+        'require-admin-login'
+    ],
+    
+    
+    function ($request,$id){
+        return new Response(200, Admin\Profissional::getEditProfissional($request,$id));
+        
+    }
+    ]);
+
+
+
+
+
 
 //ROTA DE UPLOAD DE IMAGEM DO ADMIN
 $obRouter->post('/admin/pacientes',[
