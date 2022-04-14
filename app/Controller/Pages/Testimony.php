@@ -57,7 +57,7 @@ class Testimony extends Page{
 			
 		]);
 		
-		return parent::getPage('DEPOIMENTOS > WDEV', $content);
+		return parent::getPage('DEPOIMENTOS > SISCAPS', $content);
 		
 	}
 	

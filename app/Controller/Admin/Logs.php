@@ -67,7 +67,7 @@ class Logs extends Page{
 		]);
 		
 		//Retorna a página completa
-		return parent::getPanel('Usuários > WDEV', $content,'logs', self::$hidden);
+		return parent::getPanel('Usuários > SISCAPS', $content,'logs', self::$hidden);
 		
 	}
 	

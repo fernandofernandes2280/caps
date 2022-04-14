@@ -10,10 +10,10 @@ class Organization{
 	public $id = 1;
 	
 	//nome da organizacao
-	public $name = 'Canal WDEV';
+	public $name = 'Canal SISCAPS';
 	
 	//site da organizacao
-	public $site = 'youtube.com.br/wdevoficial';
+	public $site = 'youtube.com.br/SISCAPSoficial';
 	
 	//descricao da organizacao
 	public $description = 'Starter template

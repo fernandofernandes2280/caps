@@ -67,7 +67,7 @@ class User extends Page{
 		]);
 		
 		//Retorna a página completa
-		return parent::getPanel('Usuários > WDEV', $content,'users', self::$hidden);
+		return parent::getPanel('Usuários > SISCAPS', $content,'users', self::$hidden);
 		
 	}
 	
@@ -88,7 +88,7 @@ class User extends Page{
 		]);
 		
 		//Retorna a página completa
-		return parent::getPanel('Cadastrar Usuário > WDEV', $content,'users', self::$hidden);
+		return parent::getPanel('Cadastrar Usuário > SISCAPS', $content,'users', self::$hidden);
 		
 	}
 	
@@ -203,7 +203,7 @@ class User extends Page{
 		]);
 		
 		//Retorna a página completa
-		return parent::getPanel('Editar Usuário > WDEV', $content,'users', self::$hidden);
+		return parent::getPanel('Editar Usuário > SISCAPS', $content,'users', self::$hidden);
 		
 	}
 	
@@ -290,7 +290,7 @@ class User extends Page{
 		]);
 		
 		//Retorna a página completa
-		return parent::getPanel('Excluir Usuário > WDEV', $content,'users', self::$hidden);
+		return parent::getPanel('Excluir Usuário > SISCAPS', $content,'users', self::$hidden);
 		
 	}
 	

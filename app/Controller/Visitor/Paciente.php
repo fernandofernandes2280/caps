@@ -167,7 +167,7 @@ class Paciente extends Page{
 		]);
 		
 		//Retorna a página completa
-		return parent::getPanel('Pacientes > WDEV', $content,'pacientes', self::$hidden);
+		return parent::getPanel('Pacientes > SISCAPS', $content,'pacientes', self::$hidden);
 		
 	}
 	
@@ -228,7 +228,7 @@ class Paciente extends Page{
 		]);
 	//	Logs::setNewLog($request);
 		//Retorna a página completa
-		return parent::getPanel('Editar Paciente > WDEV', $content,'pacientes', self::$hidden);
+		return parent::getPanel('Editar Paciente > SISCAPS', $content,'pacientes', self::$hidden);
 		
 	}
 	

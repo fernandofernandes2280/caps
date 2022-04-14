@@ -59,7 +59,7 @@ class Testimony extends Page{
 		]);
 		
 		//Retorna a página completa
-		return parent::getPanel('Depoimentos > WDEV', $content,'testimonies');
+		return parent::getPanel('Depoimentos > SISCAPS', $content,'testimonies');
 		
 	}
 	
@@ -77,7 +77,7 @@ class Testimony extends Page{
 		]);
 		
 		//Retorna a página completa
-		return parent::getPanel('Cadastrar Depoimentos > WDEV', $content,'testimonies');
+		return parent::getPanel('Cadastrar Depoimentos > SISCAPS', $content,'testimonies');
 		
 	}
 	
@@ -143,7 +143,7 @@ class Testimony extends Page{
 		]);
 		
 		//Retorna a página completa
-		return parent::getPanel('Editar Depoimentos > WDEV', $content,'testimonies');
+		return parent::getPanel('Editar Depoimentos > SISCAPS', $content,'testimonies');
 		
 	}
 	
@@ -192,7 +192,7 @@ class Testimony extends Page{
 		]);
 		
 		//Retorna a página completa
-		return parent::getPanel('Excluir Depoimentos > WDEV', $content,'testimonies');
+		return parent::getPanel('Excluir Depoimentos > SISCAPS', $content,'testimonies');
 		
 	}
 	

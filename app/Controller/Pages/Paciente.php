@@ -136,7 +136,7 @@ class Paciente extends Page{
 				
 		]);
 		
-		return parent::getPage('PACIENTES > WDEV', $content);
+		return parent::getPage('PACIENTES > SISCAPS', $content);
 		
 	}
 	

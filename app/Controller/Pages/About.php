@@ -23,7 +23,7 @@ class About extends Page{
 		]);
 		
 		//retorna a view da página
-		return parent::getPage('SOBRE > WDEV ', $content);
+		return parent::getPage('SOBRE > SISCAPS ', $content);
 		
 	}
 	
