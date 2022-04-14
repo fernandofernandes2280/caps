@@ -67,19 +67,37 @@ class Profissional {
     		    'cep'=>$this->cep,
     		    'fone'=>$this->fone,
     		    'dataNasc'=>$this->dataNasc,
-    		    'dataCad'=>$this->dataCad,
     		    'status'=>$this->status,
     		    'cartaoSus'=>$this->cartaoSus,
 		        'funcao'=>$this->funcao,
 		        'cpf'=>$this->cpf,
 		        'cbo'=>$this->cbo,
-		        'email'=>$this->email,
-		        'senha'=>$this->senha,
-		        'tipo'=>$this->tipo,
 		]);
 		//Sucesso
 		return true;
 	}
+	
+	//Método responsavel por atualizar os dados no banco
+	public function atualizar(){
+	    return (new Database('profissionais'))->update('id = '.$this->id,[
+	        'nome'=>$this->nome,
+	        'endereco'=>$this->endereco,
+	        'bairro'=>$this->bairro,
+	        'cidade'=>$this->cidade,
+	        'uf'=>$this->uf,
+	        'cep'=>$this->cep,
+	        'fone'=>$this->fone,
+	        'dataNasc'=>$this->dataNasc,
+	        'status'=>$this->status,
+	        'cartaoSus'=>$this->cartaoSus,
+	        'funcao'=>$this->funcao,
+	        'cpf'=>$this->cpf,
+	        'cbo'=>$this->cbo,
+	    ]);
+	    
+	    
+	}
+	
 	
 	//Método responsavel por retornar um bairro com base no seu Id
 	public static function getProfissionalById($id){
@@ -90,6 +108,15 @@ class Profissional {
 	//Método responsavel por retornar Pacientes
 	public static function getProfissionais($where = null, $order = null, $limit = null, $fields = '*') {
 		return (new Database('profissionais'))->select($where,$order,$limit,$fields);
+	}
+	
+	
+	//Método responsavel por retornar um usuario com base em seu e-mail
+	public static function getUserByCPF($cpf){
+	    return self::getProfissionais('cpf = "'.$cpf.'"')->fetchObject(self::class);
+	    
+	    //Sucesso
+	    return true;
 	}
 	
 	

@@ -17,6 +17,7 @@ use \App\Model\Entity\Profissional as EntityProfissional;
 
 use \WilliamCosta\DatabaseManager\Pagination;
 use Dompdf\Dompdf;
+use Bissolli\ValidadorCpfCnpj\CPF;
 
 
 class Profissional extends Page{
@@ -213,6 +214,60 @@ class Profissional extends Page{
 	    
 	}
 	
+	//Metodo responsável por gravar a atualização de um Funcionário
+	public static function setEditProfissional($request,$id){
+	    
+	    //obtém o funcionário do banco de dados
+	    $obProfissional = EntityProfissional::getProfissionalById($id);
+	    
+	    //Valida a instancia
+	    if(!$obProfissional instanceof EntityProfissional){
+	        $request->getRouter()->redirect('/admin/profissionais');
+	    }
+	    
+	    //Post Vars
+	    $postVars = $request->getPostVars();
+	    
+	    //instancia classe pra verificar CPF
+	    $validaCpf = new CPF($postVars['cpf']);
+	    
+	    //verifica se é válido o cpf
+	    if (!$validaCpf->isValid()){
+	        
+	        $request->getRouter()->redirect('/admin/profissionais/'.$id.'/edit?status=cpfInvalido');
+	    }
+	    
+	    
+	    //busca usuário pelo CPF sem a maskara
+	    $obProfissional = EntityProfissional::getUserByCPF($validaCpf->getValue());
+	    
+	    if($obProfissional instanceof EntityProfissional && $obProfissional->id != $id){
+	        $request->getRouter()->redirect('/admin/profissionais/'.$id.'/edit?status=cpfDuplicated');
+	    }
+	    
+	    
+	    //Atualiza a instância
+	    $obProfissional->nome = Funcoes::convertePriMaiuscula($postVars['nome']) ?? $obProfissional->nome;
+	    $obProfissional->cep = $postVars['cep'] ?? $obProfissional->cep;
+	    $obProfissional->endereco = $postVars['endereco'] ?? $obProfissional->endereco;
+	    $obProfissional->bairro =  $postVars['bairro'] ?? $obProfissional->bairro;
+	    $obProfissional->cidade = $postVars['cidade'] ?? $obProfissional->cidade;
+	    $obProfissional->uf = $postVars['uf'] ?? $obProfissional->uf;
+	    $obProfissional->cartaoSus = $postVars['cartaoSus'] ?? $obProfissional->cartaoSus;
+	    $obProfissional->cbo = $postVars['cbo'] ?? $obProfissional->cbo;
+	    $obProfissional->funcao = $postVars['funcao'] ?? $obProfissional->funcao;
+	    $obProfissional->dataNasc = implode("-",array_reverse(explode("/",$postVars['dataNasc'])));
+	    $obProfissional->cpf = $validaCpf->getValue(); //cpf sem formatação
+	    $obProfissional->fone = $postVars['fone'] ?? $obProfissional->fone;
+	    $obProfissional->status = $postVars['status'] ?? $obProfissional->status;
+	    $obProfissional->atualizar();
+	    
+	    //	Logs::setNewLog($request);
+	    
+	    //Redireciona o usuário
+	    $request->getRouter()->redirect('/admin/profissionais/'.$obProfissional->id.'/edit?statusMessage=updated');
+	    
+	}
 	
 	
 	
@@ -442,59 +497,6 @@ class Profissional extends Page{
 	
 
 	
-	//Metodo responsável por gravar a atualização de um Paciente
-	public static function setEditPaciente($request,$codPronto){
-		//obtém o deopimento do banco de dados
-		$obPaciente = EntityPaciente::getPacienteByCodPronto($codPronto);
-		
-		//Valida a instancia
-		if(!$obPaciente instanceof EntityPaciente){
-			$request->getRouter()->redirect('/admin/pacientes');
-		}
-		
-		//Post Vars
-		$postVars = $request->getPostVars();
-
-		//redireciona caso seja feita busca rápida pelo prontuário
-		if(@$postVars['pront']){
-			$request->getRouter()->redirect('/admin/pacientes/'.@$postVars['pront'].'/edit');
-		}
-		
-		
-		//Atualiza a instância
-		$obPaciente->nome = Funcoes::convertePriMaiuscula($postVars['nome']) ?? $obPaciente->nome;
-		$obPaciente->cep = $postVars['cep'] ?? $obPaciente->cep;
-		$obPaciente->endereco = $postVars['endereco'] ?? $obPaciente->endereco;
-		$obPaciente->bairro =  $postVars['bairro'] ?? $obPaciente->bairro;
-		$obPaciente->cidade = $postVars['cidade'] ?? $obPaciente->cidade;
-		$obPaciente->uf = $postVars['uf'] ?? $obPaciente->uf;
-		$obPaciente->dataNasc = implode("-",array_reverse(explode("/",$postVars['dataNasc']))); 
-		$obPaciente->dataCad = implode("-",array_reverse(explode("/",$postVars['dataCad'])));
-		$obPaciente->sexo = $postVars['sexo'] ?? $obPaciente->sexo;
-		$obPaciente->naturalidade = $postVars['naturalidade'] ?? $obPaciente->naturalidade;
-		$obPaciente->escolaridade = $postVars['escolaridade'] ?? $obPaciente->escolaridade;
-		$obPaciente->fone1 = $postVars['fone1'] ?? $obPaciente->fone1;
-		$obPaciente->fone2 = $postVars['fone2'] ?? $obPaciente->fone2;
-		$obPaciente->mae = $postVars['mae'] ?? $obPaciente->mae;
-		$obPaciente->estadoCivil = $postVars['estadoCivil'] ?? $obPaciente->estadoCivil;
-		$obPaciente->procedencia = $postVars['procedencia'] ?? $obPaciente->procedencia;
-		$obPaciente->status = $postVars['status'] ?? $obPaciente->status;
-		$obPaciente->motivoInativo = $postVars['motivoInativo'] ?? $obPaciente->motivoInativo;
-		$obPaciente->cartaoSus = $postVars['cartaoSus'] ?? $obPaciente->cartaoSus;
-		$obPaciente->tipo = $postVars['tipo'] ?? $obPaciente->tipo;
-		$obPaciente->cid1 = $postVars['cid1'] ?? $obPaciente->cid1;
-		$obPaciente->cid2 = $postVars['cid2'] ?? $obPaciente->cid2;
-		$obPaciente->substanciaPri = $postVars['substanciaPri'] ?? $obPaciente->substanciaPri;
-		$obPaciente->substanciaSec = $postVars['substanciaSec'] ?? $obPaciente->substanciaSec;
-		$obPaciente->obs = $postVars['obs'] ?? $obPaciente->obs;
-		$obPaciente->atualizar();
-		
-	//	Logs::setNewLog($request);
-		
-		//Redireciona o usuário
-		$request->getRouter()->redirect('/admin/pacientes/'.$obPaciente->codPronto.'/edit?statusMessage=updated');
-		
-	}
 	
 	//Método responsavel por retornar a mensagem de status
 	private static function getStatus($request){
@@ -507,20 +509,26 @@ class Profissional extends Page{
 		//Mensagens de status
 		switch ($queryParams['statusMessage']) {
 			case 'created':
-				return Alert::getSuccess('Paciente criado com sucesso!');
+				return Alert::getSuccess('Profissional criado com sucesso!');
 				break;
 			case 'updated':
-				return Alert::getSuccess('Paciente atualizado com sucesso!');
+				return Alert::getSuccess('Profissional atualizado com sucesso!');
 				break;
 			case 'deleted':
-				return Alert::getSuccess('Paciente excluído com sucesso!');
+				return Alert::getSuccess('Profissional excluído com sucesso!');
 				break;
 			case 'duplicad':
-				return Alert::getError('Paciente Já cadastrado!');
+				return Alert::getError('Profissional Já cadastrado!');
 				break;
-			case 'deletedfail':
-				return Alert::getError('Você não tem permissão para Excluir! Contate o administrador.');
-				break;
+			case 'cpfDuplicated':
+			    return Alert::getError('CPF já está sendo utilizado por outro usuário!');
+			    break;
+			case 'cpfInvalido':
+			    return Alert::getError('CPF Inválido!');
+			    break;
+			case 'emailDuplicated':
+			    return Alert::getError('E-mail já está sendo utilizado!');
+			    break;
 		}
 	}
 	

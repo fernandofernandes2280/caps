@@ -18,7 +18,7 @@ $obRouter->get('/admin/profissionais',[
 		]);
 
 
-//ROTA DE VIEW DE PROFISSIONAL
+//ROTA DE EDIT DE PROFISSIONAL
 $obRouter->get('/admin/profissionais/{id}/edit',[
     'middlewares' => [
         'require-admin-login'
@@ -31,6 +31,18 @@ $obRouter->get('/admin/profissionais/{id}/edit',[
     }
     ]);
 
+//ROTA DE POST DE PROFISSIONAL
+$obRouter->post('/admin/profissionais/{id}/edit',[
+    'middlewares' => [
+        'require-admin-login'
+    ],
+    
+    
+    function ($request,$id){
+        return new Response(200, Admin\Profissional::setEditProfissional($request,$id));
+        
+    }
+    ]);
 
 
 
