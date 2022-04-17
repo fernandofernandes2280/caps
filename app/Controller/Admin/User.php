@@ -124,9 +124,10 @@ class User extends Page{
 		
 		if($obUser instanceof EntityUser){
 		    if($id != '')
-		        $request->getRouter()->redirect('/admin/profissionais/'.$id.'/acesso?status=duplicatedProf');
+		      
+		        $request->getRouter()->redirect('/admin/users/'.$obUser->id.'/edit?status=duplicated');
 		    else
-			//$request->getRouter()->redirect('/admin/users/new?status=duplicated&id='.$obUser->id.' ');
+
 		        $request->getRouter()->redirect('/admin/users/'.$obUser->id.'/edit?status=duplicated');
 		}
 		
@@ -135,7 +136,7 @@ class User extends Page{
 		
 		if($obUserEmail instanceof EntityUser ){
 		    if($id != '')
-		        $request->getRouter()->redirect('/admin/profissionais/'.$id.'/acesso?status=emailDuplicated');
+		        $request->getRouter()->redirect('/admin/users/'.$obUserEmail->id.'/edit?status=emailDuplicated');
 		        else
 		    $request->getRouter()->redirect('/admin/users/'.$obUserEmail->id.'/edit?status=emailDuplicated');
 		}
@@ -174,11 +175,8 @@ class User extends Page{
 				return Alert::getSuccess('Usuário excluído com sucesso!');
 				break;
 			case 'duplicated':
-			    return Alert::getError('<a href="'.@$queryParams['id'].'/edit">CPF já está sendo utilizado por outro usuário!</a>');
-				break;
-			case 'duplicatedProf':
 			    return Alert::getError('CPF já está sendo utilizado por outro usuário!');
-			    break;
+				break;
 			case 'cpfInvalido':
 				return Alert::getError('CPF Inválido!');
 				break;
