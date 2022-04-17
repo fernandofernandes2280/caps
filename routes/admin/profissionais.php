@@ -18,7 +18,7 @@ $obRouter->get('/admin/profissionais',[
 		]);
 
 
-//ROTA DE EDIT DE PROFISSIONAL
+//ROTA GET DE EDIT DE PROFISSIONAL
 $obRouter->get('/admin/profissionais/{id}/edit',[
     'middlewares' => [
         'require-admin-login'
@@ -31,7 +31,7 @@ $obRouter->get('/admin/profissionais/{id}/edit',[
     }
     ]);
 
-//ROTA DE POST DE PROFISSIONAL
+//ROTA DE POST DE EDIT PROFISSIONAL
 $obRouter->post('/admin/profissionais/{id}/edit',[
     'middlewares' => [
         'require-admin-login'
@@ -43,6 +43,63 @@ $obRouter->post('/admin/profissionais/{id}/edit',[
         
     }
     ]);
+
+//ROTA GET DE ACESSO AO SISTEMA PELO PROFISSIONAL
+$obRouter->get('/admin/profissionais/{id}/acesso',[
+    'middlewares' => [
+        'require-admin-login'
+    ],
+    
+    
+    function ($request,$id){
+        return new Response(200, Admin\User::getNewUser($request,$id));
+        
+    }
+    ]);
+
+//ROTA POST DE ACESSO AO SISTEMA PELO PROFISSIONAL
+$obRouter->post('/admin/profissionais/{id}/acesso',[
+    'middlewares' => [
+        'require-admin-login'
+    ],
+    
+    
+    function ($request,$id){
+        return new Response(200, Admin\User::setNewUser($request,$id));
+        
+    }
+    ]);
+
+//ROTA GET DE NOVO PROFISSIONAL
+$obRouter->get('/admin/profissionais/new',[
+    'middlewares' => [
+        'require-admin-login'
+    ],
+    
+    
+    function ($request){
+        return new Response(200, Admin\Profissional::getNewProfissional($request));
+        
+    }
+    ]);
+
+//ROTA POST DE NOVO PROFISSIONAL
+$obRouter->post('/admin/profissionais/new',[
+    'middlewares' => [
+        'require-admin-login'
+    ],
+    
+    
+    function ($request){
+        return new Response(200, Admin\Profissional::setNewProfissional($request));
+        
+    }
+    ]);
+
+
+
+
+
 
 
 

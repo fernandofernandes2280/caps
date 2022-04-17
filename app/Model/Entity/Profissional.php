@@ -48,11 +48,6 @@ class Profissional {
     //e-mail do funcionário
     public $email;
     
-    //senha de acesso ao sistema
-    public $senha;
-    
-    //tipo de acesso ao sistema
-    public $tipo;
     
 	//Método responsavel por cadastrar um bairro no banco de dados
 	public function cadastrar(){
@@ -72,6 +67,7 @@ class Profissional {
 		        'funcao'=>$this->funcao,
 		        'cpf'=>$this->cpf,
 		        'cbo'=>$this->cbo,
+		      'email'=>$this->email
 		]);
 		//Sucesso
 		return true;
@@ -93,6 +89,7 @@ class Profissional {
 	        'funcao'=>$this->funcao,
 	        'cpf'=>$this->cpf,
 	        'cbo'=>$this->cbo,
+	        'email'=>$this->email
 	    ]);
 	    
 	    

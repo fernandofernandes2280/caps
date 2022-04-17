@@ -72,18 +72,22 @@ class User extends Page{
 	}
 	
 	//Metodo responsávelpor retornar o formulário de cadastro de um novo usuário
-	public static function getNewUser($request){
-		
+	public static function getNewUser($request,$id){
+
+	    
+	    if($id != '')
+	    $obFunc = EntityProfissional::getProfissionalById($id);
+	    
+	    
 		//Conteúdo do Formulário
 		$content = View::render('admin/modules/users/form',[
 				'title' => 'Cadastrar usuário',
-				'nome' => '',
-				'email' => '',
-				'cpf' => '',
+				'nome' => $obFunc->nome ?? '',
+		        'email' => $obFunc->email ?? '',
+		        'cpf' => Funcoes::mask(@$obFunc->cpf, '###.###.###-##')  ?? '',
+		        'senha' => $obFunc->cpf ?? '',
 				'statusMessage' => self::getStatus($request),
-				
-				
-				
+		        'selectedVisitante'=> 'selected'
 				
 		]);
 		
@@ -94,10 +98,10 @@ class User extends Page{
 	
 	
 	//Metodo responsávelpor por cadastrar um usuário no banco
-	public static function setNewUser($request){
+	public static function setNewUser($request,$id){
 		//Post vars
 		$postVars = $request->getPostVars();
-		
+	
 		$nome = $postVars['nome'] ?? '';
 		$email = $postVars['email'] ?? '';
 		$senha = $postVars['senha'] ?? '';
@@ -119,9 +123,22 @@ class User extends Page{
 		$obUser = EntityUser::getUserByCPF($validaCpf->getValue());
 		
 		if($obUser instanceof EntityUser){
-			$request->getRouter()->redirect('/admin/users/new?status=duplicated');
+		    if($id != '')
+		        $request->getRouter()->redirect('/admin/profissionais/'.$id.'/acesso?status=duplicatedProf');
+		    else
+			//$request->getRouter()->redirect('/admin/users/new?status=duplicated&id='.$obUser->id.' ');
+		        $request->getRouter()->redirect('/admin/users/'.$obUser->id.'/edit?status=duplicated');
 		}
 		
+		//Valida o email do usuário
+		$obUserEmail = EntityUser::getUserByEmail($email);
+		
+		if($obUserEmail instanceof EntityUser ){
+		    if($id != '')
+		        $request->getRouter()->redirect('/admin/profissionais/'.$id.'/acesso?status=emailDuplicated');
+		        else
+		    $request->getRouter()->redirect('/admin/users/'.$obUserEmail->id.'/edit?status=emailDuplicated');
+		}
 				
 		//Nova instancia de Usuário
 		$obUser = new EntityUser;
@@ -157,8 +174,11 @@ class User extends Page{
 				return Alert::getSuccess('Usuário excluído com sucesso!');
 				break;
 			case 'duplicated':
-				return Alert::getError('CPF já está sendo utilizado por outro usuário!');
+			    return Alert::getError('<a href="'.@$queryParams['id'].'/edit">CPF já está sendo utilizado por outro usuário!</a>');
 				break;
+			case 'duplicatedProf':
+			    return Alert::getError('CPF já está sendo utilizado por outro usuário!');
+			    break;
 			case 'cpfInvalido':
 				return Alert::getError('CPF Inválido!');
 				break;

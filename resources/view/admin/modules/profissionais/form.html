@@ -14,12 +14,16 @@
      	<i class="material-icons" style="font-size: 30px;">save</i>
      </button>
 		 
-		 <a href="{{URL}}/admin/pacientes/new">
-			<button type="button" class="btn btn-success btn-round btn-sm " rel="tooltip" title="Novo Paciente">
+		 <a href="{{URL}}/admin/profissionais/new">
+			<button type="button" class="btn btn-success btn-round btn-sm " rel="tooltip" title="Novo Profissional">
 			<i class="material-icons" style="font-size: 30px;">add_circle_outline</i>
 			</button>
 		</a>
-		
+		<a href="{{URL}}/admin/profissionais/{{id}}/acesso">
+			<button type="button" class="btn btn-alert btn-round btn-sm " rel="tooltip" title="Acesso ao sistema" {{escondeBotaoAcesso}}>
+			<i class="material-icons" style="font-size: 30px;">key</i>
+			</button>
+		</a>
 		<a href="{{URL}}/admin/profissionais">
 			<button type="button" class="btn btn-warning btn-round btn-sm " rel="tooltip" title="Voltar">
 				<i class="material-icons" style="font-size: 30px;">reply</i>
@@ -58,22 +62,22 @@
 	    </div>
 	  	<div class="col-md-2">
 	      <label for="cidade">Cidade</label>
-	      <input type="text" class="form-control-pessoal" id="cidade" name="cidade" value="{{cidade}}" >
+	      <input type="text" class="form-control-pessoal" id="cidade" name="cidade" value="{{cidade}}" required>
 	    </div>  
 
       	<div class="col-md-1">
 	      	<label for="uf">UF</label>
-			<input type="text" class="form-control-pessoal" id="uf" name="uf" value="{{uf}}" >    
+			<input type="text" class="form-control-pessoal" id="uf" name="uf" value="{{uf}}" required>    
 		</div>  
 
 		<div class="col-md-3 mb-2">
 	      <label for="cartaoSus">Cartão SUS</label>
-	      <input type="text" class="form-control-pessoal" id="cartaoSus" name="cartaoSus" value="{{cartaoSus}}">
+	      <input type="text" class="form-control-pessoal" id="cartaoSus" name="cartaoSus" value="{{cartaoSus}}" required>
 		</div>
 		
 		<div class="col-md-2 mb-2">
 	      <label for="cbo">CBO</label>
-	      <input type="text" class="form-control-pessoal" id="cbo" name="cbo" value="{{cbo}}">
+	      <input type="text" class="form-control-pessoal" id="cbo" name="cbo" value="{{cbo}}" required>
 		</div>
 		
    </div>   
@@ -104,13 +108,18 @@
 	</div>	  	
 		<div class="form-row">
 		
-		<div class="col-md-2 mb-2">
+			<div class="col-md-2 mb-2">
 		      <label for="status">Status</label>
 		         <select class="custom-select" id="status" name="status" required>
 			        <option {{selectedStatusA}} value=1>Ativo</option>
 			        <option {{selectedStatusI}} value=0>Inativo</option>
 			   </select>
 		    </div>
+		   
+		    <div class="col-md-5 mb-2">
+				<label>Email</label>
+				<input type="email" name="email" class="form-control-pessoal" value="{{email}}" required>
+	    	</div>
 		</div>
 </form>	
 

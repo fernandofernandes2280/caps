@@ -9,7 +9,7 @@
 										
 									
 										<div class="col-4 text-right">
-											<a href="{{URL}}/admin/users">
+											<a href="javascript:history.back()">
 												<button type="button" class="btn btn-warning btn-round btn-sm " rel="tooltip" title="Voltar">
 													<i class="material-icons" style="font-size: 30px;">reply</i>
 												</button>
@@ -52,7 +52,7 @@
 									 <div class="form-row">
 									    <div class="col-md-5 mb-2">
 											<label>Senha</label>
-											<input type="text" name="senha"  class="form-control-pessoal" >
+											<input type="text" name="senha" class="form-control-pessoal" >
 
 									    </div>
     								  </div>
@@ -60,8 +60,14 @@
 											<button class="btn btn-facebook btn-sm btn-round" type="submit" rel="tooltip" title="Salvar">
 										     	<i class="material-icons" style="font-size: 30px;">save</i>
 										     </button>
-										</div>
+										
 									
+									<a href="{{URL}}/admin/users/new">
+										<button type="button" class="btn btn-success btn-round btn-sm " rel="tooltip" title="Novo Usuário">
+											<i class="material-icons" style="font-size: 30px;">person_add</i>
+										</button>
+									</a>
+									</div>
 									</form>
 
 

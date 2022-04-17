@@ -25,8 +25,8 @@ $obRouter->get('/admin/users/new',[
 		],
 		
 		
-		function ($request){
-			return new Response(200, Admin\User::getNewUser($request));
+		function ($request,$id){
+			return new Response(200, Admin\User::getNewUser($request,$id));
 		}
 		]);
 
@@ -37,8 +37,8 @@ $obRouter->post('/admin/users/new',[
 		],
 		
 		
-		function ($request){
-			return new Response(200, Admin\User::setNewUser($request));
+		function ($request,$id){
+			return new Response(200, Admin\User::setNewUser($request,$id));
 		}
 		]);
 

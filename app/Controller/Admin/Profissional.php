@@ -97,6 +97,7 @@ class Profissional extends Page{
 			    'id' => $obProfissional->id,
 			    'titleStatus'=> $titleStatus,
 			    'cor' => $cor,
+			    'email' => $obProfissional->email,
 			]);
 			
 		}
@@ -164,6 +165,39 @@ class Profissional extends Page{
 	}
 	
 	
+	//Metodo responsávelpor retornar o formulário de Cadastro de um novo Profissional
+	public static function getNewProfissional($request){
+	    
+	    //Conteúdo do Formulário
+	    $content = View::render('admin/modules/profissionais/form',[
+	        
+	        'title' => 'Novo',
+	        'nome' => '',
+	        'cep' => '',
+	        'endereco' => '',
+	        'cartaoSus' => '',
+	        'statusMessage' => self::getStatus($request),
+	        'fone' => '',
+	        'cidade' => 'Santana',
+	        'uf' => 'AP',
+	        'cbo' => '',
+	        'cpf' => '',
+	        'funcao' => '',
+	        'dataNasc' => '',
+	        'selectedStatusA' => 'selected',
+	        'selectedStatusI' => '',
+	        'optionBairros' => EntityBairro::getSelectBairros(null),
+	        'email' => '',
+	        'escondeBotaoAcesso' => 'hidden'
+	        
+	    ]);
+	    
+	    //Retorna a página completa
+	    return parent::getPanel('Novo Profissional > SISCAPS', $content,'profissionais', self::$buscaRapidaPront);
+	    
+	}
+	
+	
 	//Metodo responsávelpor retornar o formulário de Edição de um Profissional
 	public static function getEditProfissional($request,$id){
 	    
@@ -174,11 +208,6 @@ class Profissional extends Page{
 	    if(!$obProfissional instanceof EntityProfissional){
 	        $request->getRouter()->redirect('/admin/profissionais');
 	    }
-	    
-	    $obProfissional->tipo == 'Admin' ? $selectedAdmin = 'selected' : $selectedAdmin = '' ;
-	    $obProfissional->tipo == 'Visitante' ? $selectedVisitante = 'selected' : $selectedVisitante = '' ;
-	    $obProfissional->tipo == 'Operador' ? $selectedOperador = 'selected' : $selectedOperador = '' ;
-	    
 	    
 	    //Conteúdo do Formulário
 	    $content = View::render('admin/modules/profissionais/form',[
@@ -202,10 +231,7 @@ class Profissional extends Page{
 	        'selectedStatusI' => $obProfissional->status == 0 ? 'selected' : '',
 	        'optionBairros' => EntityBairro::getSelectBairros($obProfissional->bairro),
 	        'email' => $obProfissional->email,
-	        'senha' => $obProfissional->senha,
-	        'selectedAdmin'=> $selectedAdmin,
-	        'selectedVisitante'=> $selectedVisitante,
-	        'selectedOperador'=> $selectedOperador,
+	        'escondeBotaoAcesso' => ''
 	        
 	    ]);
 	    
@@ -213,6 +239,58 @@ class Profissional extends Page{
 	    return parent::getPanel('Editar Profissional > SISCAPS', $content,'profissionais', self::$buscaRapidaPront);
 	    
 	}
+	
+	//Metodo responsável por gravar um Novo Funcionário
+	public static function setNewProfissional($request){
+	    
+	    //Post Vars
+	    $postVars = $request->getPostVars();
+	    
+	    //instancia classe pra verificar CPF
+	    $validaCpf = new CPF($postVars['cpf']);
+	    
+	    //verifica se é válido o cpf
+	    if (!$validaCpf->isValid()){
+	        
+	        $request->getRouter()->redirect('/admin/profissionais/new?status=cpfInvalido');
+	    }
+	    
+	    
+	    //busca usuário pelo CPF sem a maskara
+	    $obProfissional = EntityProfissional::getUserByCPF($validaCpf->getValue());
+	    
+	    if($obProfissional instanceof EntityProfissional){
+	        $request->getRouter()->redirect('/admin/profissionais/new?status=cpfDuplicated');
+	    }
+	
+	    
+	    //Nova instancia de Usuário
+	    $obProfissional = new EntityProfissional();
+	    $obProfissional->nome = Funcoes::convertePriMaiuscula($postVars['nome']);
+	    $obProfissional->cep = $postVars['cep'];
+	    $obProfissional->endereco = $postVars['endereco'];
+	    $obProfissional->bairro =  $postVars['bairro'];
+	    $obProfissional->cidade = $postVars['cidade'];
+	    $obProfissional->uf = $postVars['uf'];
+	    $obProfissional->cartaoSus = $postVars['cartaoSus'];
+	    $obProfissional->cbo = $postVars['cbo'];
+	    $obProfissional->funcao = $postVars['funcao'];
+	    $obProfissional->dataNasc = implode("-",array_reverse(explode("/",$postVars['dataNasc'])));
+	    $obProfissional->cpf = $validaCpf->getValue(); //cpf sem formatação
+	    $obProfissional->fone = $postVars['fone'];
+	    $obProfissional->status = $postVars['status'];
+	    $obProfissional->email = $postVars['email'];
+	    $obProfissional->cadastrar();
+	    
+	    //	Logs::setNewLog($request);
+	    
+	    //Redireciona o usuário
+	    $request->getRouter()->redirect('/admin/profissionais/'.$obProfissional->id.'/edit?statusMessage=created');
+	    
+	}
+	
+	
+	
 	
 	//Metodo responsável por gravar a atualização de um Funcionário
 	public static function setEditProfissional($request,$id){
@@ -260,6 +338,7 @@ class Profissional extends Page{
 	    $obProfissional->cpf = $validaCpf->getValue(); //cpf sem formatação
 	    $obProfissional->fone = $postVars['fone'] ?? $obProfissional->fone;
 	    $obProfissional->status = $postVars['status'] ?? $obProfissional->status;
+	    $obProfissional->email = $postVars['email'] ?? $obProfissional->email;
 	    $obProfissional->atualizar();
 	    
 	    //	Logs::setNewLog($request);
