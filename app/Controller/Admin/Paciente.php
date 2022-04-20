@@ -152,6 +152,8 @@ class Paciente extends Page{
 		
 		//esconde busca rápida de prontuário no navBar
 		$hidden = '';
+		
+		($_SESSION['admin']['usuario']['tipo'] == 'Operador' ? $botãoExcluir = 'hidden' : $botãoExcluir =  '' );
 		//Conteúdo da Home
 		$content = View::render('admin/modules/pacientes/index',[
 				'title' => 'Pesquisar Pacientes',
@@ -167,6 +169,7 @@ class Paciente extends Page{
 				'selectedAd' =>  $selectedAd,
 				'selectedTm' =>  $selectedTm,
 				'selectedAtIn' => $selectedAtIn,
+		        'botaoExcluir' => $botãoExcluir
 				
 				
 		]);

@@ -36,7 +36,7 @@ MiddlewareQueue::setMap([
 		'require-admin-login' => \App\Http\Middleware\RequireAdminLogin::class,
 		'require-visitor-logout' => \App\Http\Middleware\RequireVisitorLogout::class,
 		'require-visitor-login' => \App\Http\Middleware\RequireVisitorLogin::class,
-		'api' => \App\Http\Middleware\Api::class
+      	'api' => \App\Http\Middleware\Api::class
 ]);
 
 //Define o mapeamento de Middleware Padrões(Executados em todas as rotas)
