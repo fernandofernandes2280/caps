@@ -97,6 +97,31 @@ $obRouter->post('/admin/profissionais/new',[
     ]);
 
 
+//ROTA GET DE EXCLUIR PROFISSIONAL
+$obRouter->get('/admin/profissionais/{id}/delete',[
+    'middlewares' => [
+        'require-admin-login'
+    ],
+    
+    
+    function ($request, $id){
+        //apenas administrador pode excluir paciente
+        if($_SESSION['admin']['usuario']['tipo'] == 'Admin')
+                return new Response(200, Admin\Profissional::getDeleteProfissional($request, $id));
+            else
+                return new Response(200, 'Você não tem permissão. Contate o Administrador! <a href="javascript:history.back()">Voltar</a>');
+    }
+    ]);
 
-
-
+//ROTA POST DE EXCLUIR PROFISSIONAL
+$obRouter->post('/admin/profissionais/{id}/delete',[
+    'middlewares' => [
+        'require-admin-login'
+    ],
+    
+    
+    function ($request, $id){
+        return new Response(200, Admin\Profissional::setDeleteProfissional($request, $id));
+        
+    }
+    ]);

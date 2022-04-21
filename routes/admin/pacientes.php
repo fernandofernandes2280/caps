@@ -12,7 +12,7 @@ $obRouter->get('/admin/pacientes',[
 		
 		
 		function ($request){
-			return new Response(200, Admin\Paciente::getPacientes($request));
+			return new Response(200, Admin\Paciente::getPacientes($request));  
 		}
 		]);
 
@@ -117,7 +117,11 @@ $obRouter->get('/admin/pacientes/{codPronto}/delete',[
     
     
     function ($request,$codPronto){
-        return new Response(200, Admin\Paciente::getDeletePaciente($request,$codPronto));
+        //apenas administrador pode excluir paciente
+        if($_SESSION['admin']['usuario']['tipo'] == 'Admin')
+            return new Response(200, Admin\Paciente::getDeletePaciente($request,$codPronto));
+        else 
+            return new Response(200, 'Você não tem permissão. Contate o Administrador! <a href="javascript:history.back()">Voltar</a>');
     }
     ]);
 

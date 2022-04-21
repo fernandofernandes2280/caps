@@ -153,6 +153,7 @@ class Paciente extends Page{
 		//esconde busca rápida de prontuário no navBar
 		$hidden = '';
 		
+		//oculta o botão excluir para usuário Operador
 		($_SESSION['admin']['usuario']['tipo'] == 'Operador' ? $botãoExcluir = 'hidden' : $botãoExcluir =  '' );
 		//Conteúdo da Home
 		$content = View::render('admin/modules/pacientes/index',[

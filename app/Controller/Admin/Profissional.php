@@ -349,234 +349,6 @@ class Profissional extends Page{
 	}
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	//Método responsavel por renderizar a Capa de Prontuário do Paciente
-	public static function getCapaProntuario($request,$codPronto){
-	    
-	    //esconde busca rápida de prontuário no navBar
-	    $hidden = '';
-	    
-	    
-	    //obtém o Paciente do banco de dados
-	    $obPaciente = EntityPaciente::getPacienteByCodPronto($codPronto);
-	    
-	    //Valida a instancia
-	    if(!$obPaciente instanceof EntityPaciente){
-	        $request->getRouter()->redirect('/admin/pacientes');
-	    }
-	    
-	    //Conteúdo da Home
-	    $content = View::render('admin/modules/pacientes/capa',[
-	        
-	        'codPronto' => $obPaciente->codPronto,
-	        'tipo' => $obPaciente->tipo,
-	        'nome' => $obPaciente->nome,
-	        'endereco' => $obPaciente->endereco.' - '.EntityBairro::getBairroById($obPaciente->bairro)->nome.' - '.$obPaciente->cidade.' / '.$obPaciente->uf,
-	        'dataNasc' => date('d/m/Y', strtotime($obPaciente->dataNasc)),
-	        'dataCad' => date('d/m/Y', strtotime($obPaciente->dataCad)),
-	        'estadoCivil' =>EntityEstadoCivil::getEstadoCivilById($obPaciente->estadoCivil)->nome,
-	        'escolaridade' =>EntityEscolaridade::getEscolaridadeById($obPaciente->escolaridade)->nome,
-	        'sexo' => $obPaciente->sexo,
-	        'naturalidade' => $obPaciente->naturalidade,
-	        'mae' => $obPaciente->mae,
-	        'cartaoSus' =>Funcoes::mask($obPaciente->cartaoSus,'# | # | # | # | # | # | # | # | # | # | # | # | # | # | #') ,
-	        'fone1' =>$obPaciente->fone1,
-	        'fone2' =>$obPaciente->fone2,
-	        'procedencia' =>EntityProcedencia::getProcedenciaById($obPaciente->procedencia)->nome,
-	        'cid' =>Entitycid10::getCid10ById($obPaciente->cid1)->nome
-	        
-	        
-	        
-	    ]);
-	    
-	    //Retorna a página completa
-	    //return parent::getPanel('Pacientes > Siscaps', $content,'pacientes', self::$hidden);
-	    return $content;
-	    
-	}
-	
-	
-	
-	//Método responsavel por gerar o PDF da Capa de Prontuário do Paciente
-	public static function getImprimirCapaProntuario($request, $codPronto){
-		
-		//instância a classe
-		$dompdf = new Dompdf(["enable_remote" => true]);
-		$options = $dompdf->getOptions();
-		$options->setDefaultFont('Courier');
-		$dompdf->setOptions($options);
-		//abre a sessão de cache
-	//	ob_start();
-		//caminho do arquivo
-	//	require '{{URL}}../../resources/view/admin/modules/pacientes/capa.html';
-		//recebe o conteudo entre as tags ob_start e ob_get_clean
-	//	$pdf = ob_get_clean();
-		
-		$pdf = self::getCapaProntuario($request, $codPronto);
-		
-		//carrega o conteúdo do arquivo .php
-		$dompdf->loadHtml($pdf);
-		
-		
-		
-		//Configura o tamanho do papel
-		$dompdf->setPaper("A4");
-		
-		$dompdf->render();
-		
-		$dompdf->stream("capaProntuario.php", ["Attachment" => false]);
-		
-	}
-	
-	
-	
-
-	
-	//Método que gera o Codigo do pontuario do paciente
-	public static function geraCodPronto(){
-		
-		$resultado = [];
-		$results =  EntityPaciente::getPacientes(null,'codPronto asc',null,'id, codPronto');
-		//verifica se o id não é nulo e obtém a Escolaridade do banco de dados
-
-		while ($obPaciente = $results -> fetchObject(EntityPaciente::class)) {
-				
-			$id[] = $obPaciente->id;
-			$codPronto[] = $obPaciente->codPronto;
-			}
-			//retorna a diferença entre os arrays
-			$resultado = (array_diff($id, $codPronto));
-			
-			if(count($resultado) > 0){
-				sort($resultado);
-				//recebe o primeiro valor do último codPronto que está faltando
-				$resultado = $resultado[0];
-				
-			}else{
-				//recebe a ultima posicao acrescida de 1
-				$resultado = ($codPronto[count($codPronto)-1]+1);
-			}
-
-			return $resultado;
-			
-		}
-		
-		
-		
-	//Metodo responsávelpor retornar o formulário de cadastro de um novo Paciente
-	public static function getNewPaciente($request){
-		$dataAtual = date('Y-m-d');
-		//Conteúdo do Formulário
-		$content = View::render('admin/modules/pacientes/form',[
-				'title' => 'Novo',
-				'prontuario' =>str_pad(self::geraCodPronto(),4,"0",STR_PAD_LEFT) ,
-				'hidden' =>'hidden', //esconde botão atendimentos
-				'nome' => '',
-				'endereco' => '',
-				'cep' => '',
-				'optionBairros' => EntityBairro::getSelectBairros(null),
-				'cidade' => 'Santana',
-				'uf' => 'Ap',
-				'dataNasc' => '',
-				'dataCad' => $dataAtual,
-				'naturalidade' => '',
-				'fone1' => '',
-				'fone2' => '',
-				'mae' => '',
-				'cartaoSus' => '',
-				'obs' => '',
-				'statusMessage' => '',
-				'optionEscolaridade' => EntityEscolaridade::getSelectEscolaridade(null),
-				'optionEstadoCivil' => EntityEstadoCivil::getSelectEstadoCivil(null),
-				'optionProcedencia' => EntityProcedencia::getSelectProcedencia(null),
-				'optionMotivoInativo' => EntityMotivoInativo::getSelectMotivoInativo(null),
-				'optionCid10-1' => Entitycid10::getSelectCid10(null),
-				'optionCid10-2' => Entitycid10::getSelectCid10(null),
-				'optionSubstanciaPri' => EntitySubstancia::getSelectSubstancia(null),
-				'optionSubstanciaSec' => EntitySubstancia::getSelectSubstancia(null),
-				'selectedStatusA' => 'selected',
-				'selectedTipoA' => 'selected',
-				
-		]);
-		
-		//Retorna a página completa
-		return parent::getPanel('Cadastrar Pacientes > SISCAPS', $content,'pacientes', self::$hidden);
-		
-	}
-	
-	
-	//Metodo responsávelpor por cadastrar um Paciente no banco
-	public static function setNewPaciente($request){
-		//Post vars
-		$postVars = $request->getPostVars();
-
-		//Nova instância de paciente
-		$obPaciente = new EntityPaciente;
-		
-		$obPaciente->codPronto = self::geraCodPronto();
-		$obPaciente->nome = Funcoes::convertePriMaiuscula($postVars['nome']);
-		$obPaciente->cep = $postVars['cep'];
-		$obPaciente->endereco = Funcoes::convertePriMaiuscula($postVars['endereco']);
-		$obPaciente->bairro = Funcoes::convertePriMaiuscula($postVars['bairro']);
-		$obPaciente->cidade = Funcoes::convertePriMaiuscula($postVars['cidade']);
-		$obPaciente->uf = strtoupper($postVars['uf']);
-		$obPaciente->dataNasc = implode("-",array_reverse(explode("/",$postVars['dataNasc']))); 
-		$obPaciente->dataCad = $postVars['dataCad'];
-		$obPaciente->sexo = $postVars['sexo'];
-		$obPaciente->naturalidade = Funcoes::convertePriMaiuscula($postVars['naturalidade']);
-		$obPaciente->escolaridade = $postVars['escolaridade'] ?? null;
-		$obPaciente->fone1 = $postVars['fone1'];
-		$obPaciente->fone2 = $postVars['fone2'];
-		$obPaciente->mae = Funcoes::convertePriMaiuscula($postVars['mae']);
-		$obPaciente->estadoCivil = $postVars['estadoCivil'] ?? null;
-		$obPaciente->procedencia = $postVars['procedencia'] ?? null;
-		$obPaciente->status = $postVars['status'];
-		$obPaciente->motivoInativo = $postVars['motivoInativo'] ?? null;
-		$obPaciente->cartaoSus = $postVars['cartaoSus'];
-		$obPaciente->tipo = $postVars['tipo'];
-		$obPaciente->cid1 = $postVars['cid1'] ?? null;
-		$obPaciente->cid2 = $postVars['cid2'] ?? null;
-		$obPaciente->substanciaPri = $postVars['substanciaPri'] ?? null;
-		$obPaciente->substanciaSec = $postVars['substanciaSec'] ?? null;
-		$obPaciente->obs = Funcoes::convertePriMaiuscula($postVars['obs']) ?? '';
-		
-		
-		//Verifica se o Paciente já está cadastrado no Banco
-		$duplicado = EntityPaciente::getPacienteDuplicado(date('Y-m-d',strtotime($postVars['dataNasc'])), $postVars['nome']);
-		
-		if($duplicado instanceof EntityPaciente){
-			//Redireciona para o paciente já existente
-			$request->getRouter()->redirect('/admin/pacientes/'.$duplicado->codPronto.'/edit?statusMessage=duplicad');
-		}
-		
-		$obPaciente->cadastrar();
-	
-		//Grava o Log do usuário
-		Logs::setNewLog('pacientes', 'Novo' , $obPaciente->codPronto.' '.$obPaciente->nome);
-		
-		//Redireciona o usuário
-		$request->getRouter()->redirect('/admin/pacientes/'.$obPaciente->codPronto.'/edit?statusMessage=created');
-		
-	}
-	
-	
-
-	
-	
 	//Método responsavel por retornar a mensagem de status
 	private static function getStatus($request){
 		//Query PArams
@@ -613,52 +385,45 @@ class Profissional extends Page{
 	
 	
 	//Metodo responsávelpor retornar o formulário de Exclusão de um Paciente
-	public static function getDeletePaciente($request,$codPronto){
-		//obtém o deopimento do banco de dados
-		$obPaciente = EntityPaciente::getPacienteByCodPronto($codPronto);
+	public static function getDeleteProfissional($request,$id){
+	    
+		//obtém o profissional do banco de dados
+		$obProfissional = EntityProfissional::getProfissionalById($id);
 		
 		//Valida a instancia
-		if(!$obPaciente instanceof EntityPaciente){
-			$request->getRouter()->redirect('/admin/pacientes');
+		if(!$obProfissional instanceof EntityProfissional){
+			$request->getRouter()->redirect('/admin/profissionais');
 		}
 		
 		
 		//Conteúdo do Formulário
-		$content = View::render('admin/modules/pacientes/delete',[
-				'nome' => $obPaciente->nome
+		$content = View::render('admin/modules/profissionais/delete',[
+		    'nome' => $obProfissional->nome
 			
 				
 		]);
 		
 		//Retorna a página completa
-		return parent::getPanel('Excluir Paciente > SISCAPS', $content,'pacientes', self::$hidden);
+		return parent::getPanel('Excluir Profissional > SISCAPS', $content,'profissionais', self::$buscaRapidaPront);
 		
 	}
 	
 	//Metodo responsável por Excluir um Paciente
-	public static function setDeletePaciente($request,$codPronto){
-		
-		
-		//apenas o administrador pode excluir
-		if ($_SESSION['admin']['usuario']['tipo'] == 'Operador'){
-			//Redireciona o usuário
-			$request->getRouter()->redirect('/admin/pacientes?statusMessage=deletedfail');
-		}
-		
+	public static function setDeleteProfissional($request,$id){
 		
 		//obtém o paciente do banco de dados
-		$obPaciente = EntityPaciente::getPacienteByCodPronto($codPronto);
+		$obProfissional = EntityProfissional::getProfissionalById($id);
 		
 		//Valida a instancia
-		if(!$obPaciente instanceof EntityPaciente){
-			$request->getRouter()->redirect('/admin/pacientes');
+		if(!$obProfissional instanceof EntityProfissional){
+			$request->getRouter()->redirect('/admin/profissionais');
 		}
 		
 		//Exclui o depoimento
-		$obPaciente->excluir();
+		$obProfissional->excluir();
 		
 		//Redireciona o usuário
-		$request->getRouter()->redirect('/admin/pacientes?statusMessage=deleted');
+		$request->getRouter()->redirect('/admin/profissionais?statusMessage=deleted');
 		
 		
 	}

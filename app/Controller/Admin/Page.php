@@ -241,8 +241,8 @@ class Page{
 		foreach (self::$modules as $hash=>$module){
 			
 			//desabilita módulo usuários e Logs para Operador
-			if($module['label'] == 'Usuários' && $_SESSION['admin']['usuario']['tipo'] == 'Operador') $module['modal'] = 'hidden';
-			if($module['label'] == 'Logs' && $_SESSION['admin']['usuario']['tipo'] == 'Operador') $module['modal'] = 'hidden';
+	//		if($module['label'] == 'Usuários' && $_SESSION['admin']['usuario']['tipo'] == 'Operador') $module['modal'] = 'hidden';
+	//		if($module['label'] == 'Logs' && $_SESSION['admin']['usuario']['tipo'] == 'Operador') $module['modal'] = 'hidden';
 			
 			
 			$links .= View::render('admin/menu/link',[
@@ -295,7 +295,7 @@ class Page{
 		
 		$id = $_SESSION['admin']['usuario']['id'];
 		$obUser = EntityUser::getUserById($id);
-		is_null($obUser->foto) ? $imagem = '/resources/imagens/profile.png' : $imagem = '/app/File/files/images/'.$obUser->foto; 
+		is_null($obUser->foto) ? $fotoPerfil = '/resources/imagens/profile.png' : $fotoPerfil = '/app/File/files/images/'.$obUser->foto; 
 		
 		//Retorna a renderização do menu
 		return View::render('admin/menu/box',[
@@ -306,7 +306,7 @@ class Page{
 				'dropdownManutencao' => $linksDropManutencao,
 				'usuarioLogado' => $_SESSION['admin']['usuario']['nome'] ?? '',
 				'tipoUsuario' => $_SESSION['admin']['usuario']['tipo'] ?? '',
-				'imagem' => $imagem,
+		        'imagem' => $fotoPerfil,
 				
 		]);
 		

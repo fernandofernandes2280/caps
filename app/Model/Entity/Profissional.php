@@ -116,6 +116,15 @@ class Profissional {
 	    return true;
 	}
 	
+	//Método responsavel por excluir um profissional do banco de dados
+	public function excluir(){
+	    //Exclui o depoimento no Banco de Dados
+	    return (new Database('profissionais'))->delete('id = '.$this->id);
+	    //Sucesso
+	    return true;
+	}
+	
+	
 	
 	
 }
