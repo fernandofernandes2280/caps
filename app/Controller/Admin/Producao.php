@@ -47,7 +47,7 @@ class Producao{
 		
 		//Condições para BPAI
 		if($instrumento == 1){
-			$where = $addCodpronto.' A.status = "P" and I.id = '.$instrumento.' and A.data BETWEEN "'.$dataInicio.'" and "'.$dataFim.'" ' ;
+			$where = $addCodpronto.' A.status = "P" and I.id = '.$instrumento.' and A.data BETWEEN "'.$dataInicio.' 00:00:01" and "'.$dataFim.' 23:59:59" ' ;
 			$fields = 'A.idProfissional as idProfissional, T.codProcedimento as codProcedimento, A.data as dataAtendimento, C.nome as cid10, F.cbo as cbo,
 				F.cartaoSus as cartaoSus, P.cartaoSus as cartaoSusP, P.nome as nome, P.sexo as sexo, P.dataNasc as dataNasc, P.endereco, P.bairro,P.cidade,P.cep,P.uf, P.fone1, P.fone2	';
 			$order = 'A.idProfissional, A.data';
@@ -61,32 +61,27 @@ class Producao{
 			//$where = $addCodpronto.' I.id = '.$instrumento.' and A.data BETWEEN "'.$dataInicio.'" and "'.$dataFim.'" GROUP BY T.codProcedimento, F.cbo, A.idade ' ;
 			//$fields = 'T.codProcedimento as codProcedimento, A.idade as idade, F.cbo as cbo, count(*) as totalGrupo';
 			
-			$where = $addCodpronto.' A.status = "P" and I.id = '.$instrumento.' and A.data BETWEEN "'.$dataInicio.'" and "'.$dataFim.'" GROUP BY T.codProcedimento, F.cbo' ;
+			$where = $addCodpronto.' A.status = "P" and I.id = '.$instrumento.' and A.data BETWEEN "'.$dataInicio.' 00:00:01" and "'.$dataFim.' 23:59:59" GROUP BY T.codProcedimento, F.cbo' ;
 			$fields = 'T.codProcedimento as codProcedimento, F.cbo as cbo, count(*) as totalGrupo';
 			$order = 'T.codProcedimento';
 			
 			//Itens dos atendimentos avulsos
-			$whereAvulso = ' I.id = '.$instrumento.' and A.data BETWEEN "'.$dataInicio.'" and "'.$dataFim.'" ' ;
+			$whereAvulso = ' I.id = '.$instrumento.' and A.data BETWEEN "'.$dataInicio.' 00:00:01" and "'.$dataFim.' 23:59:59" ' ;
 			$fieldsAvulso = 'T.codProcedimento as codProcedimento, F.cbo as cbo, A.qtd';
 			$orderAvulso = 'T.codProcedimento';
 			$dadosAtendimentosAvulso = EntityPaciente::getPacientesRel($whereAvulso,$orderAvulso,null,$fieldsAvulso,$tableAvulso);
+			
 		}
 		
 		//Condições para RAAS
 		if($instrumento == 3){
-			$where = $addCodpronto.'A.status = "P" and I.id = '.$instrumento.' and A.data BETWEEN "'.$dataInicio.'" and "'.$dataFim.'"  ' ;
+			$where = $addCodpronto.'A.status = "P" and I.id = '.$instrumento.' and A.data BETWEEN "'.$dataInicio.' 00:00:01" and "'.$dataFim.' 23:59:59"  ' ;
 			$fields = 'DISTINCT A.codPronto as codPronto, T.codProcedimento as codProcedimento, A.data as dataAtendimento, C.nome as cid10, F.cbo as cbo,
 				F.cartaoSus as cartaoSus	';
 			$order = 'A.data desc';
 		}
 		
-		
-		//	var_dump($where);
 		$dadosAtendimentos = EntityPaciente::getPacientesRel($where,$order,null,$fields,$table);
-		
-		
-		
-		//	print_r($dadosAtendimentosAvulso);exit;
 		
 		$cont=0;
 		
@@ -219,7 +214,7 @@ class Producao{
 		
 		$resultados = '';
 		
-		$where = 'I.id = '.$instrumento.' and A.data BETWEEN "'.$dataInicio.'" and "'.$dataFim.'" and A.status = "P"' ;
+		$where = 'I.id = '.$instrumento.' and A.data BETWEEN "'.$dataInicio.' 00:00:01" and "'.$dataFim.' 23:59:59" and A.status = "P"' ;
 		$table = 'atendimentos as A inner join pacientes as P on A.codPronto = P.codPronto inner join procedimentos as T on A.idProcedimento = T.id
 				 inner join profissionais as F on A.idProfissional = F.id inner join instrumentos as I on T.instrumento = I.id
 				 inner join cid10 as C on P.cid1 = C.id	';

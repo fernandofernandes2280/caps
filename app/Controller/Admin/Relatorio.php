@@ -46,20 +46,64 @@ class Relatorio  extends Page{
 			
 		}
 		
-		$resultado .= '<tr>
-								<td>Total</td>
-								<td>'.$total.'</td>
-						  </tr>';
+		
 	
 		
 		
 		$dados['resultado'] = $resultado;
 		$dados['grafico'] = $resultadoGrafico;
-		
+		//recebe o total de atendimentos
+		self::$qtdTotal = self::$qtdTotal + $total;  
 		return $dados;
 		
 		
 		
+	}
+	
+	//Método responsável por retornar relatorio por atendimento Avulso
+	public static function getRelPorAtendimentoAvulso($request,$dataInicio,$dataFim){
+	    
+	    //recebe dados os atendimentos
+	    $resultado = '';
+	    //recebe dados do gráfico
+	    $resultadoGrafico = '';
+	    
+	    $total = 0;
+	    $where = 'A.idProcedimento = P.id and data BETWEEN "'.$dataInicio.' 00:00:01" and "'.$dataFim.' 23:59:59" GROUP BY A.idProcedimento' ;
+	    $table = ' atendimentosAvulsos A, procedimentos P';
+	    $fields = 'P.nome as atendimento, SUM(A.qtd) as total';
+	   
+	    
+	    $dadosAtendimentosAvulsos = EntityPaciente::getPacientesRel($where,null,null,$fields,$table);
+	    
+	    while ($obAtendimento = $dadosAtendimentosAvulsos -> fetchObject(EntityPaciente::class)) {
+	        
+	        $resultado .= '<tr>
+								<td>Ação com a comunidade (Palestras, Consultas, Cortes de cabelo, etc..)</td>
+								<td>'.$obAtendimento->total.'</td>
+						  </tr>';
+	        $total += $obAtendimento->total;
+	        
+	        //dados para geração do gráfico
+	        $resultadoGrafico .=  "['$obAtendimento->atendimento', $obAtendimento->total], "  ;
+	        
+	    }
+	    //soma atendimentos + atendimentos avulsos.
+	    self::$qtdTotal = self::$qtdTotal + $total;
+	    $resultado .= '<tr>
+								<td>Total Geral</td>
+								<td>'.self::$qtdTotal.'</td>
+						  </tr>';
+	    
+	    
+	    
+	    $dados['resultado'] = $resultado;
+	    $dados['grafico'] = $resultadoGrafico;
+	    
+	    return $dados;
+	    
+	    
+	    
 	}
 	
 	//Método responsável por retornar relatorio por atendimento
@@ -114,9 +158,28 @@ class Relatorio  extends Page{
 								<td>'.$ob->atendimento.'</td>
 								<td>'.$ob->total.'</td>
 						  </tr>';
-			$total += $ob->total; 
+	
+		$total += $ob->total; 
 			
 		}
+		//Atendimentos avulsos
+		$whereAvulso = 'A.idProfissional = '.$id.' and data BETWEEN "'.$dataInicio.' 00:00:01" and "'.$dataFim.' 23:59:59" ' ;
+		$tableAvulso = ' atendimentosAvulsos A INNER JOIN procedimentos P ON A.idProcedimento = P.id';
+		$fieldsAvulso = 'P.nome as atendimento, A.qtd as total';
+		$dadosAtendimentosAvulsos = EntityPaciente::getPacientesRel($whereAvulso,null,null,$fieldsAvulso,$tableAvulso);
+	
+		while ($obAvulso = $dadosAtendimentosAvulsos -> fetchObject(EntityPaciente::class)) {
+		    
+		    $resultado .= '<tr>
+								<td>'.$obAvulso->atendimento.'</td>
+								<td>'.$obAvulso->total.'</td>
+						  </tr>';
+		$total += $obAvulso->total;
+		    
+		}
+		
+		
+		
 		
 		$resultado .= '<tr>
 								<td style="color: #fff">Total</td>
@@ -138,12 +201,15 @@ class Relatorio  extends Page{
 		$content = View::render('admin/modules/relatorios/index',[
 				'title' => 'Relatórios de Atendimentos do Período: '.date('d/m/Y', strtotime($dataInicio)) .' à '.date('d/m/Y', strtotime($dataFim)),
 				'procedimentos' => self::getRelPorAtendimento($request,$dataInicio,$dataFim)['resultado'],
+		        'procedimentosAvulsos' => self::getRelPorAtendimentoAvulso($request,$dataInicio,$dataFim)['resultado'],
 				'profissional' => self::getRelPorProfissional($request, $dataInicio, $dataFim),
+		    /*
                 'graficoProcedimentos'=>View::render('pages/graficos/graficos',[
                     'label'=> self::getRelPorAtendimento($request,$dataInicio,$dataFim)['grafico'],
                     'title' => '<h5>Gráfico por atendimentos</h5>',
                 ]), 
-				
+				*/
+		    'graficoProcedimentos'=>''
 				
 		]);
 		
