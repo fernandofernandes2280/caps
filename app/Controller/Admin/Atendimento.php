@@ -163,7 +163,7 @@ class Atendimento extends Page{
 	//	if(!$obAtendimento instanceof EntityAtendimento){
 	//		$request->getRouter()->redirect('/admin/pacientes');
 	//	}
-		
+		$obPaciente->status == 'Ativo' ? $alert = 'success' : $alert = 'danger';
 		//Conteúdo da Home
 		$content = View::render('admin/modules/atendimentos/index',[
 				
@@ -173,6 +173,7 @@ class Atendimento extends Page{
 				'nome' => $obPaciente->nome,
 				'prontuario' => str_pad($obPaciente->codPronto,4,"0",STR_PAD_LEFT), 
 				'status' => $obPaciente->status,
+		        'tipoAlert' => $alert,
 				'id'=>$obPaciente->id,
 				'statusMessage' => self::getStatus($request),
 				'data' => $data,
@@ -183,7 +184,8 @@ class Atendimento extends Page{
 				'optionProfissional' => self::getProfissionais($idProf,'status = 1'),//status = 1 => funcionários ativos
 				'optionProcedimento' => self::getProcedimentos($proced),
 				'acao' => 'Novo',
-				'selectedP' => 'selected'
+				'selectedP' => 'selected',
+
 		]);
 		
 		
@@ -217,22 +219,17 @@ class Atendimento extends Page{
 	}
 	
 	
-	public static function getReativaPaciente($request){
-		//Post vars
-		$postVars = $request->getPostVars();
-		$request->getRouter()->redirect('/admin/atendimentos/reativarPaciente');
-		//Conteúdo do Formulário
-		$content = View::render('admin/modules/atendimentos/reativa',[
-				
-				
-				
-		]);
-		
-		//Retorna a página completa
-		return parent::getPanel('Reativar Paciente', $content,'reativar', self::$hidden);
-		
-		
+	//Metodo responsável por gravar a Reativar Paciente
+	public static function getReativaPaciente($codPronto){
+	    //obtém o deopimento do banco de dados
+	    $obPaciente = EntityPaciente::getPacienteByCodPronto($codPronto);
+	    
+	    //Atualiza a instância
+	   $obPaciente->status = 'Ativo';
+       $obPaciente->atualizar();
+	    
 	}
+	
 	
 	public static function getInsertAtendimento($request){
 		
@@ -263,17 +260,14 @@ class Atendimento extends Page{
 			$request->getRouter()->redirect('/admin/atendimentos/'.$obAtendimento->codPronto.'/atendimento?statusMessage=duplicad&idProf='.$obAtendimento->idProfissional.'&data='.$data.'&proced='.$postVars['procedimento']);
 		}
 		
-		
-		if (EntityPaciente::getPacienteByCodPronto($obAtendimento->codPronto)->status == 'Inativo' ){
-			
-			//Redireciona o usuário
-		//	$request->getRouter()->redirect('/admin/atendimentos/reativarPaciente?'.$postVars);
-	//	self::getReativaPaciente($request);
-			
-		}
-		
-	//	exit;
+
 		$obAtendimento->cadastrar();
+		
+		
+		//Reativa o paciente se estivar Inativo
+		if (EntityPaciente::getPacienteByCodPronto($obAtendimento->codPronto)->status == 'Inativo' ){
+		    self::getReativaPaciente($obAtendimento->codPronto);
+		}
 		
 	
 		//Redireciona o usuário

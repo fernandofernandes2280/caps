@@ -8,7 +8,7 @@
 								</div>
 	
 									<div class="row ">
-										<div class="col-3">
+										<div class="col-2">
 											<label style="margin-bottom:0px">Prontuário</label><br>
 											<label class="text-light"><h6>{{prontuario}}</h6></label>
 										</div>
@@ -19,9 +19,12 @@
 												  <i class="material-icons" style="font-size: 19px;" rel="tooltip" title="Editar Paciente">edit</i>
 											</a>
 										</div>
-										<div class="col-1">
+										<div class="col-2">
 											<label style="margin-bottom:0px">Status</label><br>
-											<label class="text-light"><h6>{{status}}</h6></label>
+											<div class="alert alert-{{tipoAlert}} text-center" role="alert" style="height: 30px; width: 90px; margin-top:5px; padding: 5px 10px">
+											 	<label class="text-light"><h6>{{status}}</h6></label>
+											</div>
+											
 										</div>
 										<div class="col-3 align-self-end text-right">
 																				    	 
