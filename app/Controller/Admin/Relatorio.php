@@ -26,7 +26,7 @@ class Relatorio  extends Page{
 		$resultadoGrafico = '';
 		
 		$total = 0;
-		$where = 'status = "P" and data BETWEEN "'.$dataInicio.'" and "'.$dataFim.'" GROUP BY P.nome' ;
+		$where = 'status = "P" and data BETWEEN "'.$dataInicio.' 00:00:01" and "'.$dataFim.' 23:59:59" GROUP BY P.nome' ;
 		$table = 'atendimentos as A INNER JOIN procedimentos as P ON P.id = A.idProcedimento';
 		$fields = 'P.nome as atendimento, COUNT(*) as total';
 		$order = ' P.nome';
@@ -67,7 +67,7 @@ class Relatorio  extends Page{
 		
 		$resultado = '';
 		
-		$where = 'A.status = "P" and data BETWEEN "'.$dataInicio.'" and "'.$dataFim.'  " GROUP BY P.id' ;
+		$where = 'A.status = "P" and data BETWEEN "'.$dataInicio.' 00:00:01" and "'.$dataFim.' 23:59:59  " GROUP BY P.id' ;
 		$table = 'atendimentos as A INNER JOIN profissionais as P ON P.id = A.idProfissional';
 		$fields = 'P.id as idProfissional, COUNT(*) as total';
 		$order = ' P.id';
@@ -101,7 +101,7 @@ class Relatorio  extends Page{
 		
 		$resultado = '';
 		$total = 0;
-		$where = 'A.idProfissional = '.$id.' and status = "P" and data BETWEEN "'.$dataInicio.'" and "'.$dataFim.' " GROUP BY P.nome' ;
+		$where = 'A.idProfissional = '.$id.' and status = "P" and data BETWEEN "'.$dataInicio.' 00:00:01" and "'.$dataFim.' 23:59:59 " GROUP BY P.nome' ;
 		$table = 'atendimentos as A INNER JOIN procedimentos as P ON P.id = A.idProcedimento';
 		$fields = 'P.nome as atendimento, COUNT(*) as total';
 		$order = ' P.nome';

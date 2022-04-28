@@ -51,7 +51,7 @@ $(document).ready(function() {
 		
 		$.post(data.action,data,function(id){
 			div.fadeOut();
-			alert(id);
+			alert(100);
 			location.reload();
 			
 			
