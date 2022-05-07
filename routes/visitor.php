@@ -1,6 +1,6 @@
 <?php
 
-//Inclui as rotas de Login 3fgfdgdf
+//Inclui as rotas de Login
 include __DIR__.'/visitor/home.php';
 
 
